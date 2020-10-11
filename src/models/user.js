@@ -48,5 +48,18 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+
+  User.associate = (models) => {
+    User.hasMany(models.product);
+    User.hasMany(models.image);
+    User.hasMany(models.address);
+    User.belongsToMany(models.psychographicItem, {
+      through: "user_psychographicItem"
+    });
+    User.hasOne(models.profile, {
+      foreignKey: "profileId"
+    });
+  };
+
   return User;
 }
