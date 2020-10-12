@@ -5,7 +5,8 @@ module.exports = {
     },
     fail:{
         status:"fail",
-        data:null
+        data:null,
+        message: null
     },
     error:{
         status:"error",

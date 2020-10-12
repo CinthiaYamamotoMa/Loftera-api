@@ -44,7 +44,8 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true,
     defaultScope: {
       where: {
-        active: true
+        active: true,
+        deleted: false,
       }
     }
   });
