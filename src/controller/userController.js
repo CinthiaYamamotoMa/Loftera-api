@@ -2,6 +2,7 @@ const router = require('express').Router();
 const userService = require('../services/userService');
 const responseObj = require('../config/response');
 const { user } = require('../models/');
+const { auth } = require('../services/userService');
 
 // all routes bellow have the prefix /user - keep that in mind when adding/editin routes.
 module.exports = {
@@ -52,19 +53,19 @@ module.exports = {
             const response = responseObj.success;
             response.data = updatedUser;
             res.json(response);
-        }else{
+        } else {
             const response = responseObj.fail;
             let message = "";
             if (!receivedUser) {
                 message = " user object was not found on request body; ";
             }
-            if(!userId){
+            if (!userId) {
                 message += " userId object was not found on request params; ";
             }
             res.status(400).json(response);
         }
     },
-    async delete(req, res){
+    async delete(req, res) {
         const userId = req.params.id;
         if (userId) {
             const deleteResponse = await userService.delete(userId);
@@ -81,5 +82,27 @@ module.exports = {
             response.message = "field <id> was not found on the request";
             res.status(400).json(response);
         }
+    },
+
+    async auth(req, res) {
+        var { email, password } = req.headers;
+
+        await user.findOne({
+            where: {
+                email: email
+            }
+        }).then((foundUser) => {
+
+            if(foundUser) {
+                if(password == foundUser.dataValues.password) {
+
+                    res.status(200);
+                    return res.send({ user: foundUser });
+                }
+            }
+            res.status(401);
+            return res.send({});
+        })
+
     }
 }
