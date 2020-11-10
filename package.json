@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Loftera API - Real State Software",
   "main": "app.js",
-  "author": "Icaro, Cinthia and Victor",
+  "author": "Cinthia and Victor",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^8.2.0",

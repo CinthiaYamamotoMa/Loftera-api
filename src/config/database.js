@@ -2,7 +2,7 @@ module.exports = {
   "development": {
     "username": "root",
     "password": null,
-    "database": "loftera-api",
+    "database": "loftera",
     "host": "127.0.0.1",
     "dialect": "mysql",
     // "logging": false
@@ -10,7 +10,7 @@ module.exports = {
   "production": {
     "username": "root",
     "password": null,
-    "database": "loftera-api",
+    "database": "loftera",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "logging": false

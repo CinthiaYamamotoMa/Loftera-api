@@ -19,7 +19,7 @@ O loftera precisa do [Node.js](https://nodejs.org/) v10+, MySql v5.6+ e [Loftera
 Instale as dependências:
 
 ```sh
-$ cd loftera_api
+$ cd loftera-api
 $ yarn install
 ```
 
