@@ -1,4 +1,4 @@
-const { address, product } = require('../models/');
+const { address, product, ratings, attributes } = require('../models/');
 
 module.exports = {
 
@@ -8,7 +8,7 @@ module.exports = {
                 deleted: false
             },
             include: [{
-                model: product
+                model: product,
             }]
         });
         return imoveis;

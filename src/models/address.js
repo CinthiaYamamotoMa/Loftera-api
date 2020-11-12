@@ -19,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: true
     },
+    avaliable: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
+    },
     deleted: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
