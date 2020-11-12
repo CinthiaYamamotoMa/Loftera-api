@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       });
   
       Interested.belongsTo(models.product, {
-        foreignKey: "productId"
+        foreignKey: "id"
       });
     };
   
