@@ -33,9 +33,6 @@ module.exports = (sequelize, DataTypes) => {
           foreignKey:"productId"
         });
 
-        Image.belongsTo(models.user, {
-            foreignKey:"userId"
-          });
       };
   
     return Image;

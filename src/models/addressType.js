@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         name: DataTypes.STRING,
         description: DataTypes.STRING,
+        icon: DataTypes.STRING,
         active: {
             type: DataTypes.BOOLEAN,
             defaultValue: false

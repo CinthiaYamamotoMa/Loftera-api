@@ -44,6 +44,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "productId"
     });
 
+    Address.belongsTo(models.addressType, {
+      foreignKey: "addressTypeId"
+    });
+
     Address.belongsToMany(models.addressType, {
       through: "addressType_address"
     })

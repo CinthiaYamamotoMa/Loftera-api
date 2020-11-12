@@ -7,10 +7,9 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
         },
         title: DataTypes.STRING,
-        description: DataTypes.STRING,
-        rent: DataTypes.STRING,
-        condoFee: DataTypes.STRING,
-        iptu: DataTypes.STRING,
+        aluguel: DataTypes.DECIMAL(10, 2),
+        condo: DataTypes.DECIMAL(10, 2),
+        iptu: DataTypes.DECIMAL(10, 2),
         active: {
             type: DataTypes.BOOLEAN,
             defaultValue: true
@@ -37,6 +36,16 @@ module.exports = (sequelize, DataTypes) => {
         });
 
         Product.hasMany(models.address);
+
+        Product.hasMany(models.rules);
+
+        Product.hasMany(models.attributes);
+
+        Product.hasMany(models.comments);
+
+        Product.hasOne(models.ratings, {
+            foreignKey: "ratingId"
+          });
 
         // Product.hasMany(models.solicitation);
       };
