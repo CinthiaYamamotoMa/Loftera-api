@@ -12,11 +12,5 @@ module.exports = (sequelize, DataTypes) => {
         freezeTableName: true,
     });
 
-    Permission.associate = (models) => {
-        Permission.belongsToMany(models.profile, {
-            through: "profile_permission"
-        });
-    };
-
     return Permission;
 }
