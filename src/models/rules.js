@@ -12,5 +12,13 @@ module.exports = (sequelize, DataTypes) => {
         freezeTableName: true,
     });
 
+    Rules.associate = (models) => {
+
+        Rules.belongsToMany(models.product, {
+            through: 'product_rules'
+        })
+
+    };
+
     return Rules;
 }

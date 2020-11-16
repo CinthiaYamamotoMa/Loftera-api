@@ -13,12 +13,11 @@ module.exports = {
         res.json(response);
     },
     async findOneById(req, res) {
-        console.log('findById >>>> ', req)
-        const userId = req.params.id;
+        const userId = req.query.id;
         if (userId) {
             const userFound = await imovelService.findOneById(userId);
             const response = responseObj.success;
-            if (!imovel) {
+            if (!address) {
                 response.data = null;
                 response.message = `user with id ${userId} was not found`;
             } else {

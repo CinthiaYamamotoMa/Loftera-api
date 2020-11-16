@@ -32,23 +32,28 @@ module.exports = (sequelize, DataTypes) => {
 
     Product.associate = (models) => {
         Product.belongsTo(models.user, {
-          foreignKey: "userId"
+            foreignKey: "userId"
         });
 
-        Product.hasMany(models.address);
+        Product.belongsToMany(models.attributes, {
+            through: 'product_attributes'
+        })
 
-        Product.hasMany(models.rules);
+        Product.belongsToMany(models.rules, {
+            through: 'product_rules'
+        })
 
-        Product.hasMany(models.attributes);
+        // Product.hasMany(models.interested);
+
+        Product.hasOne(models.address);
 
         Product.hasMany(models.comments);
 
         Product.hasOne(models.ratings, {
-            foreignKey: "ratingId"
-          });
+            foreignKey: "id"
+        });
 
-        // Product.hasMany(models.solicitation);
-      };
+    };
 
     return Product;
 }

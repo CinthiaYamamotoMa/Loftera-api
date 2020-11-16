@@ -1,21 +1,59 @@
-const { address, product, ratings, attributes } = require('../models/');
+const 
+{ 
+    address, 
+    product, 
+    ratings, 
+    attributes, 
+    user,
+    rules,
+    interested,
+    comments
+} = require('../models/');
 
 module.exports = {
 
     async findAll() {
         const imoveis = await address.findAll({
             where: {
-                deleted: false
+                deleted: false,
+                avaliable: true
             },
             include: [{
                 model: product,
+                include: [
+                    {
+                        model: ratings,
+                    },
+                    {
+                        model: attributes,
+                    },
+                ]
             }]
         });
         return imoveis;
     },
 
     async findOneById(id) {
-        const imovel = await address.findByPk(id);
+        const imovel = await address.findOne({
+            where: {
+                id: id,
+            },
+            include: [{
+                model: product,
+                include: [
+                    { model: ratings, },
+                    { model: attributes, },
+                    { model: rules, },
+                    { model: comments,
+                        include: [
+                            { model: user }
+                        ]
+                    },
+                ]
+                
+            },
+        {  model: user }]
+        });
         return imovel;
     },
 
