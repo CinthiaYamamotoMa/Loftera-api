@@ -85,7 +85,8 @@ module.exports = {
     },
 
     async auth(req, res) {
-        var { email, password } = req.headers;
+        console.log("vai ");
+        var { email, password } = req.body;
 
         await user.findOne({
             where: {
