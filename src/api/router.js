@@ -5,6 +5,7 @@ const commentController = require('../controller/commentController');
 
 router.get('/users', userController.findAll);
 router.get('/user', userController.findOneById);
+router.get('/email', userController.findByEmail);
 router.post('/users', userController.store);
 router.put('/users/:id', userController.update);
 router.delete('/users/:id', userController.delete);

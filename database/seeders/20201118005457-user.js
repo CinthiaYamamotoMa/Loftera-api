@@ -12,6 +12,8 @@ module.exports = {
           cellPhone: '11949794719',
           gender: 'F',
           description: 'Teste do teste',
+          question: 'Qual o nome da minha gata',
+          answer: 'Bananinha',
           deleted: false,
           createdAt: new Date(),
           updatedAt: new Date(),

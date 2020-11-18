@@ -12,6 +12,16 @@ module.exports = {
         return userresponse;
     },
 
+    async findByEmail(email) {
+        const userresponse = await user.findOne({
+            attributes: [ 'id', 'question', 'answer' ],
+            where: {
+                email: email
+            }
+        })
+        return userresponse;
+    },
+
     async storeUser(userReceived) {
         const createdUser = await user.create(userReceived);
         return createdUser;

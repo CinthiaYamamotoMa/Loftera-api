@@ -5,12 +5,12 @@ module.exports = {
     return queryInterface.bulkInsert('ratings',
       [
         {
-          limpeza: 5.00,
-          comunicacao: 5.00,
+          limpeza: 4.00,
+          comunicacao: 3.00,
           checkin: 5.00,
-          precisao: 5.00,
-          localizacao: 5.00,
-          valor: 5.00,
+          precisao: 2.50,
+          localizacao: 1.50,
+          valor: 4.50,
           qtdAvaliacoes: 1,
           productId: 1,
         },

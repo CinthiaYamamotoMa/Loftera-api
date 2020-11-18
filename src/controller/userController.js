@@ -31,6 +31,24 @@ module.exports = {
             res.status(400).json(response);
         }
     },
+    async findByEmail(req, res) {
+        const email = req.query.email;
+        if (email) {
+            const userFound = await userService.findByEmail(email);
+            const response = responseObj.success;
+            if (!user) {
+                response.data = null;
+                response.message = `user with e-mail ${email} was not found`;
+            } else {
+                response.data = userFound;
+            }
+            res.json(response);
+        } else {
+            const response = responseObj.fail;
+            response.message = "field <id> was not found on the request";
+            res.status(400).json(response);
+        }
+    },
     async store(req, res) {
         const receivedUser = req.body;
         if (receivedUser) {

@@ -24,6 +24,8 @@ module.exports = (sequelize, DataTypes) => {
       values: ['M', 'F', 'O'],
     },
     description: DataTypes.STRING,
+    question: DataTypes.STRING,
+    answer: DataTypes.STRING,
     active: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
