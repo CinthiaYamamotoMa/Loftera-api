@@ -23,4 +23,15 @@ Object.keys(db).forEach((modelName) => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+db.sequelize.sync()
+/* add quando for DROPAR o banco e reconstruir dnv 
+(fazer se não tiver dados, etc)
+.sync({
+  force: true
+})
+*/
+.then(() => {
+  console.log('sincronizou >>>')
+})
+
 module.exports = db;

@@ -1,14 +1,14 @@
-const 
-{ 
-    address, 
-    product, 
-    ratings, 
-    attributes, 
-    user,
-    rules,
-    interested,
-    comments
-} = require('../models/');
+const
+    {
+        address,
+        product,
+        ratings,
+        attributes,
+        user,
+        rules,
+        interested,
+        comments
+    } = require('../models/');
 
 module.exports = {
 
@@ -38,21 +38,28 @@ module.exports = {
             where: {
                 id: id,
             },
-            include: [{
-                model: product,
-                include: [
-                    { model: ratings, },
-                    { model: attributes, },
-                    { model: rules, },
-                    { model: comments,
-                        include: [
-                            { model: user }
-                        ]
-                    },
-                ]
-                
-            },
-        {  model: user }]
+            include: [
+                {
+                    model: product,
+                    include: [
+                        { model: user },
+                        {
+                            model: user,
+                            as: 'interessados'
+                        },
+                        { model: ratings, },
+                        { model: attributes, },
+                        { model: rules, },
+                        {
+                            model: comments,
+                            include: [
+                                { model: user }
+                            ]
+                        },
+                    ]
+
+                },
+            ]
         });
         return imovel;
     },

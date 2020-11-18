@@ -36,11 +36,16 @@ module.exports = (sequelize, DataTypes) => {
         });
 
         Product.belongsToMany(models.attributes, {
-            through: 'product_attributes'
+            through: 'product_attributes',
         })
 
         Product.belongsToMany(models.rules, {
-            through: 'product_rules'
+            through: 'product_rules',
+        })
+
+        Product.belongsToMany(models.user, {
+            through: 'interested',
+            as: 'interessados'
         })
 
         // Product.hasMany(models.interested);
@@ -49,9 +54,7 @@ module.exports = (sequelize, DataTypes) => {
 
         Product.hasMany(models.comments);
 
-        Product.hasOne(models.ratings, {
-            foreignKey: "id"
-        });
+        Product.hasOne(models.ratings);
 
     };
 

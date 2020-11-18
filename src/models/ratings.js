@@ -20,8 +20,8 @@ module.exports = (sequelize, DataTypes) => {
 
   Ratings.associate = (models) => {
 
-    Ratings.hasOne(models.product, {
-      foreignKey: "id"
+    Ratings.belongsTo(models.product, {
+      foreignKey: "productId"
     });
   };
 

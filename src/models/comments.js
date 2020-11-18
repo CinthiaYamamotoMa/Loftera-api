@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         });
   
         Comments.belongsTo(models.product, {
-          foreignKey: "id"
+          foreignKey: "productId"
         });
     };
   

@@ -13,9 +13,9 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Attributes.associate = (models) => {
-
+        console.log('>>>>>>>>> ')
         Attributes.belongsToMany(models.product, {
-            through: 'product_rules'
+            through: 'product_attributes',
         })
 
     };

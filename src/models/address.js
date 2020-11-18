@@ -40,9 +40,11 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Address.associate = (models) => {
-    Address.belongsTo(models.user, {
-      foreignKey: "userId"
-    });
+    // Address.belongsTo(models.user, {
+    //   foreignKey: "userId"
+    // });
+
+    console.log('associate >>>')
 
     Address.belongsTo(models.product, {
       foreignKey: "id"
