@@ -1,4 +1,8 @@
-const { user } = require('../models/');
+const { findInterested } = require('../controller/userController');
+const { user,
+        product,
+        ratings,
+        attributes } = require('../models/');
 
 module.exports = {
 
@@ -14,12 +18,40 @@ module.exports = {
 
     async findByEmail(email) {
         const userresponse = await user.findOne({
-            attributes: [ 'id', 'question', 'answer' ],
+            attributes: ['id', 'question', 'answer'],
             where: {
                 email: email
             }
         })
         return userresponse;
+    },
+
+    async findInterested(id) {
+        const interessados = await user.findOne({
+            where: {
+                deleted: false,
+                active: true,
+                id: id
+            },
+            include: [
+                {
+                    model: product,
+                    as: 'interessados',
+                    where: {
+                        userId: id,
+                    },
+                    include: [
+                        {
+                            model: ratings,
+                        },
+                        {
+                            model: attributes,
+                        },
+                    ]
+                },
+            ]
+        });
+        return interessados;
     },
 
     async storeUser(userReceived) {

@@ -60,7 +60,8 @@ module.exports = (sequelize, DataTypes) => {
       through: "user_psychographicItem"
     });
     User.belongsToMany(models.product, {
-      through: "interested"
+      through: "interested",
+      as: 'interessados'
     });
   };
 
