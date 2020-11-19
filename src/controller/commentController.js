@@ -6,7 +6,6 @@ const { comments } = require('../models/');
 module.exports = {
 
     async store(req, res) {
-        console.log(req)
         const receivedComment = req.body;
         if (receivedComment) {
             const createdComment = await commentService.store(receivedComment);

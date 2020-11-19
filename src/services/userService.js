@@ -27,6 +27,7 @@ module.exports = {
     },
 
     async findInterested(id) {
+        console.log('id >>>>> ', id)
         const interessados = await user.findOne({
             where: {
                 deleted: false,
@@ -37,9 +38,6 @@ module.exports = {
                 {
                     model: product,
                     as: 'interessados',
-                    where: {
-                        userId: id,
-                    },
                     include: [
                         {
                             model: ratings,
@@ -51,6 +49,7 @@ module.exports = {
                 },
             ]
         });
+        console.log('>>>>>>>>>>', interessados)
         return interessados;
     },
 

@@ -126,6 +126,7 @@ module.exports = {
     },
 
     async findInterested(req, res) {
+        console.log(req)
         const userId = req.query.userId;
         if (userId) {
             const userFound = await userService.findInterested(userId);
