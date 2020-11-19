@@ -54,7 +54,12 @@ module.exports = {
     },
 
     async storeUser(userReceived) {
+        console.log(userReceived)
+        userReceived.createdAt = new Date();
+        userReceived.updatedAt = new Date();
         const createdUser = await user.create(userReceived);
+        console.log(createdUser)
+
         return createdUser;
     },
 
