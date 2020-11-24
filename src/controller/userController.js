@@ -105,5 +105,27 @@ module.exports = {
             return res.send({});
         })
 
+    },
+
+    async updatePassword(req, res){
+        const receivedUser = req.body;
+        const userId = req.params.id;
+
+        if (receivedUser && userId) {
+            const updatedPassword = await userService.updatePassword(receivedUser, userId);
+            const response = responseObj.success;
+            response.data = updatedPassword;
+            res.json(response);
+        } else {
+            const response = responseObj.fail;
+            let message = "";
+            if (!receivedUser) {
+                message = " user object was not found on request body; ";
+            }
+            if (!userId) {
+                message += " userId object was not found on request params; ";
+            }
+            res.status(400).json(response);
+        }
     }
 }

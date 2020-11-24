@@ -22,7 +22,6 @@ module.exports = {
 
         userresponse.name = userReceived.name;
         userresponse.email = userReceived.email;
-        userresponse.password = userReceived.password;
         userresponse.cpf = userReceived.cpf;
         userresponse.cellPhone = userReceived.cellPhone;
         userresponse.gender = userReceived.gender;
@@ -56,5 +55,20 @@ module.exports = {
                     }
                 }
             })
+    },
+
+    async updatePassword(userReceived, id) {
+        const userresponse = await user.findByPk(id);
+        if (userresponse.password == userReceived.password){
+            userresponse.password = userReceived.newPassword;
+            await userresponse.save();
+            return userresponse;
+        }
+        return userresponse;
+
+        
+        
     }
+
+
 }
