@@ -7,23 +7,14 @@ module.exports = {
         {
           name: 'Pet',
           icon: 'fa fa-home',
-          active: true,
-          createdAt: new Date(),
-          updatedAt: new Date()
         },
         {
           name: 'Barulho até as 22h',
           icon: 'fa fa-bed',
-          active: true,
-          createdAt: new Date(),
-          updatedAt: new Date()
         },
         {
           name: 'Apto',
           icon: 'fa fa-building-o',
-          active: true,
-          createdAt: new Date(),
-          updatedAt: new Date()
         },
       ]
     );

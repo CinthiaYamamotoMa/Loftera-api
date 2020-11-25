@@ -6,18 +6,9 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             autoIncrement: true,
         },
-        title: DataTypes.STRING,
         aluguel: DataTypes.DECIMAL(10, 2),
         condo: DataTypes.DECIMAL(10, 2),
         iptu: DataTypes.DECIMAL(10, 2),
-        active: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: true
-        },
-        deleted: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false
-        },
         createdAt: {
             allowNull: false,
             type: DataTypes.DATE,
@@ -47,8 +38,6 @@ module.exports = (sequelize, DataTypes) => {
             through: 'interested',
             as: 'interessados'
         })
-
-        // Product.hasMany(models.interested);
 
         Product.hasOne(models.address);
 

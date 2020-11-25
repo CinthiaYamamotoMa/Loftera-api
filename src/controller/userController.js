@@ -62,7 +62,7 @@ module.exports = {
             res.status(400).json(response);
         }
     },
-    async update(req, res){
+    async update(req, res) {
         const receivedUser = req.body;
         const userId = req.params.id;
 
@@ -112,8 +112,8 @@ module.exports = {
             }
         }).then((foundUser) => {
 
-            if(foundUser) {
-                if(password == foundUser.dataValues.password) {
+            if (foundUser) {
+                if (password == foundUser.dataValues.password) {
 
                     res.status(200);
                     return res.send({ user: foundUser });
@@ -144,4 +144,26 @@ module.exports = {
             res.status(400).json(response);
         }
     },
+
+    async updatePassword(req, res) {
+        const receivedUser = req.body;
+        const userId = req.params.id;
+
+        if (receivedUser && userId) {
+            const updatedPassword = await userService.updatePassword(receivedUser, userId);
+            const response = responseObj.success;
+            response.data = updatedPassword;
+            res.json(response);
+        } else {
+            const response = responseObj.fail;
+            let message = "";
+            if (!receivedUser) {
+                message = " user object was not found on request body; ";
+            }
+            if (!userId) {
+                message += " userId object was not found on request params; ";
+            }
+            res.status(400).json(response);
+        }
+    }
 }
