@@ -26,10 +26,6 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     question: DataTypes.STRING,
     answer: DataTypes.STRING,
-    active: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true
-    },
     deleted: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
@@ -46,7 +42,6 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true,
     defaultScope: {
       where: {
-        active: true,
         deleted: false,
       }
     }

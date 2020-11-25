@@ -15,10 +15,6 @@ module.exports = (sequelize, DataTypes) => {
     complement: DataTypes.STRING,
     latitude: DataTypes.STRING,
     longitude: DataTypes.STRING,
-    active: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true
-    },
     avaliable: {
       type: DataTypes.BOOLEAN,
       defaultValue: true
@@ -44,8 +40,6 @@ module.exports = (sequelize, DataTypes) => {
     //   foreignKey: "userId"
     // });
 
-    console.log('associate >>>')
-
     Address.belongsTo(models.product, {
       foreignKey: "id"
     });
@@ -53,10 +47,6 @@ module.exports = (sequelize, DataTypes) => {
     Address.belongsTo(models.addressType, {
       foreignKey: "addressTypeId"
     });
-
-    Address.belongsToMany(models.addressType, {
-      through: "addressType_address"
-    })
 
   };
 

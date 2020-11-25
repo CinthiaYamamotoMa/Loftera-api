@@ -27,7 +27,6 @@ db.Sequelize = Sequelize;
 db.sequelize.sync({
 })
 .then(() => {
-  console.log('sincronizou >>>')
 })
 
 module.exports = db;

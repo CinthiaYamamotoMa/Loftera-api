@@ -7,22 +7,9 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
         },
         name: DataTypes.STRING,
-        description: DataTypes.STRING,
-        active: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false
-        },
         deleted: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
-        },
-        createdAt: {
-            allowNull: false,
-            type: DataTypes.DATE,
-        },
-        updatedAt: {
-            allowNull: false,
-            type: DataTypes.DATE,
         },
     }, {
         freezeTableName: true,
