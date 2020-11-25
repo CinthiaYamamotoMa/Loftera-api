@@ -94,4 +94,48 @@ module.exports = {
         return imovel;
     },
 
+    async storeInterested(interested) {
+        console.log('id >>>>> ', interested)
+        // const interesses = await user.update({
+        //     where: {
+        //         id: interested.userId
+        //     },
+        //     Interessados: [
+        //         { 
+        //             userId: interested.userId, 
+        //             productId: interested.productId, 
+        //         }
+        //     ]
+        // }, {
+        //     include: [{
+        //         model: Product,
+        //         as: 'interessados'
+        //     }]
+        // })
+
+        const userresponse = await product.findOne({
+            where: {
+                deleted: false,
+                active: true,
+                id: interested.productId
+            },
+            include: [
+                {
+                    model: user,
+                    as: 'interessados',
+                },
+            ]
+        });
+
+        // console.log('>>>>>>>>>>', userresponse.dataValues.interessados)
+        console.log('>>>>>>>>>>', userresponse)
+
+
+        // userresponse.dataValues.interessados.unshift(JSON.parse(interested.user))
+        
+        await userresponse.save();
+
+        // return userresponse;
+    },
+
 }

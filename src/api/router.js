@@ -12,6 +12,7 @@ router.delete('/users/:id', userController.delete);
 router.post('/auth', userController.auth);
 
 router.get('/interested', userController.findInterested);
+router.post('/interesse', imovelController.storeInterested);
 
 router.get('/imoveis', imovelController.findAll);
 router.get('/imovel', imovelController.findOneById);

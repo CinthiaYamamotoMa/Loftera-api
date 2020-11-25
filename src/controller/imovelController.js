@@ -83,4 +83,25 @@ module.exports = {
         }
     },
 
+    async storeInterested(req, res) {
+        console.log(req)
+        const interested = req.query;
+
+        if (interested) {
+            const userFound = await imovelService.storeInterested(interested);
+            const response = responseObj.success;
+            if (!userFound) {
+                response.data = null;
+                response.message = `user with id ${interested} was not found`;
+            } else {
+                response.data = userFound;
+            }
+            res.json(response);
+        } else {
+            const response = responseObj.fail;
+            response.message = "field <id> was not found on the request";
+            res.status(400).json(response);
+        }
+    },
+
 }

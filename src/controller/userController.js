@@ -144,4 +144,25 @@ module.exports = {
             res.status(400).json(response);
         }
     },
+
+    async storeInterested(req, res) {
+        const interested = req.query;
+    console.log('controller')
+
+        if (interested) {
+            const userFound = await userService.storeInterested(interested);
+            const response = responseObj.success;
+            if (!user) {
+                response.data = null;
+                response.message = `user with id ${interested} was not found`;
+            } else {
+                response.data = userFound;
+            }
+            res.json(response);
+        } else {
+            const response = responseObj.fail;
+            response.message = "field <id> was not found on the request";
+            res.status(400).json(response);
+        }
+    },
 }

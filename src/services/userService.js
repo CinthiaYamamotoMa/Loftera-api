@@ -1,8 +1,8 @@
 const { findInterested } = require('../controller/userController');
 const { user,
-        product,
-        ratings,
-        attributes } = require('../models/');
+    product,
+    ratings,
+    attributes } = require('../models/');
 
 module.exports = {
 
@@ -49,7 +49,6 @@ module.exports = {
                 },
             ]
         });
-        console.log('>>>>>>>>>>', interessados)
         return interessados;
     },
 
