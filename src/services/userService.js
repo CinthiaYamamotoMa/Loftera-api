@@ -19,7 +19,7 @@ module.exports = {
 
     async findByEmail(email) {
         const userresponse = await user.findOne({
-            attributes: ['id', 'question', 'answer'],
+            attributes: ['id', 'question', 'answer', 'email'],
             where: {
                 email: email
             }
@@ -57,7 +57,7 @@ module.exports = {
             where: {
                 deleted: false,
                 id: interesse.userId
-            }, 
+            },
         })
 
         return interessados;
@@ -120,6 +120,14 @@ module.exports = {
             await userresponse.save();
             return userresponse;
         }
-        return userresponse;
+        else if (userresponse.answer == userReceived.answer) {
+            userresponse.password = userReceived.newPassword;
+            await userresponse.save();
+            return userresponse;
+        }
+        else {
+            let message = "Senha antiga incorreta";
+            return message;
+        }
     }
 }
