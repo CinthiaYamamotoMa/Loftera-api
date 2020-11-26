@@ -1,9 +1,7 @@
-const { findInterested } = require('../controller/userController');
 const { user,
     product,
     ratings,
-    attributes,
-    interested } = require('../models/');
+    attributes } = require('../models/');
 
 module.exports = {
 
