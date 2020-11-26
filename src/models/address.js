@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
     // });
 
     Address.belongsTo(models.product, {
-      foreignKey: "id"
+      foreignKey: "productId"
     });
 
     Address.belongsTo(models.addressType, {
