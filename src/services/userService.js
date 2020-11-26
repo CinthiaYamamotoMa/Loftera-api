@@ -1,8 +1,8 @@
 const { findInterested } = require('../controller/userController');
 const { user,
-        product,
-        ratings,
-        attributes } = require('../models/');
+    product,
+    ratings,
+    attributes } = require('../models/');
 
 module.exports = {
 
@@ -18,7 +18,7 @@ module.exports = {
 
     async findByEmail(email) {
         const userresponse = await user.findOne({
-            attributes: ['id', 'question', 'answer'],
+            attributes: ['id', 'question', 'answer', 'email'],
             where: {
                 email: email
             }
@@ -104,11 +104,19 @@ module.exports = {
     },
     async updatePassword(userReceived, id) {
         const userresponse = await user.findByPk(id);
-        if (userresponse.password == userReceived.password){
+        if (userresponse.password == userReceived.password) {
             userresponse.password = userReceived.newPassword;
             await userresponse.save();
             return userresponse;
         }
-        return userresponse;
+        else if (userresponse.answer == userReceived.answer) {
+            userresponse.password = userReceived.newPassword;
+            await userresponse.save();
+            return userresponse;
+        }
+        else {
+            let message = "Senha antiga incorreta";
+            return message;
+        }
     }
 }
