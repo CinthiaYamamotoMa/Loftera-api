@@ -50,7 +50,6 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = (models) => {
     User.hasMany(models.product);
     User.hasMany(models.image);
-    User.hasMany(models.address);
     User.hasMany(models.comments);
     User.belongsToMany(models.psychographicItem, {
       through: "user_psychographicItem"

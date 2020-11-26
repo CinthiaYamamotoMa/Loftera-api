@@ -1,4 +1,3 @@
-const { findInterested } = require('../controller/userController');
 const { user,
     product,
     ratings,
@@ -27,7 +26,6 @@ module.exports = {
     },
 
     async findInterested(id) {
-        console.log('id >>>>> ', id)
         const interessados = await user.findOne({
             where: {
                 deleted: false,
@@ -48,7 +46,18 @@ module.exports = {
                 },
             ]
         });
-        console.log('>>>>>>>>>>', interessados)
+        return interessados;
+    },
+
+    async storeInteresse(interesse) {
+        const interessados = await user.findOne({
+            // raw: true,
+            where: {
+                deleted: false,
+                id: interesse.userId
+            },
+        })
+
         return interessados;
     },
 
