@@ -1,8 +1,9 @@
 const { findInterested } = require('../controller/userController');
 const { user,
-        product,
-        ratings,
-        attributes } = require('../models/');
+    product,
+    ratings,
+    attributes,
+    interested } = require('../models/');
 
 module.exports = {
 
@@ -27,7 +28,6 @@ module.exports = {
     },
 
     async findInterested(id) {
-        console.log('id >>>>> ', id)
         const interessados = await user.findOne({
             where: {
                 deleted: false,
@@ -48,7 +48,18 @@ module.exports = {
                 },
             ]
         });
-        console.log('>>>>>>>>>>', interessados)
+        return interessados;
+    },
+
+    async storeInteresse(interesse) {
+        const interessados = await user.findOne({
+            // raw: true,
+            where: {
+                deleted: false,
+                id: interesse.userId
+            }, 
+        })
+
         return interessados;
     },
 
@@ -104,7 +115,7 @@ module.exports = {
     },
     async updatePassword(userReceived, id) {
         const userresponse = await user.findByPk(id);
-        if (userresponse.password == userReceived.password){
+        if (userresponse.password == userReceived.password) {
             userresponse.password = userReceived.newPassword;
             await userresponse.save();
             return userresponse;

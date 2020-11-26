@@ -45,7 +45,8 @@ module.exports = {
                         { model: user },
                         {
                             model: user,
-                            as: 'interessados'
+                            as: 'interessados',
+                            required: false
                         },
                         { model: ratings, },
                         { model: attributes, },
@@ -60,6 +61,16 @@ module.exports = {
 
                 },
             ]
+        });
+        return imovel;
+    },
+
+    async findByPk(id) {
+        const imovel = await product.findOne({
+            raw: true,
+            where: {
+                id: id,
+            },
         });
         return imovel;
     },
