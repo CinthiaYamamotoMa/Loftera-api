@@ -23,8 +23,8 @@ module.exports = (sequelize, DataTypes) => {
         });
 
         PsychographicItem.belongsToMany(models.user, {
-            through: "user_psychographicItem",
-            as: 'caracteristicas'
+            through: "caracteristicas_user",
+            as: "caracteristicas"
         });
 
     };

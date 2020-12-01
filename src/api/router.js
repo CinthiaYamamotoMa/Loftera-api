@@ -21,6 +21,8 @@ router.post('/interesse', interestedController.store);
 router.get('/caracteristicas', psychographicController.findAll);
 router.post('/caracteristicas', psychographicController.store);
 
+router.get('/findUsers', psychographicController.findUsers);
+
 router.get('/imoveis', imovelController.findAll);
 router.get('/imovel', imovelController.findOneById);
 

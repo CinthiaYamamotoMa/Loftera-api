@@ -1,4 +1,5 @@
-const { psychographicItem } = require('../models/');
+const { psychographicItem,
+    user } = require('../models/');
 
 module.exports = {
 
@@ -17,6 +18,41 @@ module.exports = {
                 id: id
             }
         });
+        return caracteristicas;
+    },
+
+    async findAllByUserId(id) {
+        const usuario = await user.findOne({
+            where: {
+                id: id
+            },
+            include: [
+                {
+                    model: psychographicItem,
+                    as: "caracteristicas",
+                },
+            ]
+        });
+        // console.log(user.dataValues.caracteristicas[0].dataValues)
+        return usuario;
+    },
+
+    async findAllUsers() {
+        const caracteristicas = await psychographicItem.findAll({
+            where: {
+                deleted: false
+            },
+            include: [
+                {
+                    model: user,
+                    as: 'caracteristicas',
+                    attributes: ['id', 'name', 'gender']
+                },
+            ]
+        });
+
+        // console.log(caracteristicas[0])
+
         return caracteristicas;
     },
 
