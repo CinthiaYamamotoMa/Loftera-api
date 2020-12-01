@@ -7,6 +7,8 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
         },
         name: DataTypes.STRING,
+        image: DataTypes.STRING,
+        icon: DataTypes.STRING,
         deleted: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
@@ -21,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
         });
 
         PsychographicItem.belongsToMany(models.user, {
-            through: "user_psychographicItem"
+            through: "user_psychographicItem",
+            as: 'caracteristicas'
         });
 
     };

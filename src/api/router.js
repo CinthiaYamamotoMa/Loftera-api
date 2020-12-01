@@ -3,6 +3,7 @@ const userController = require('../controller/userController');
 const imovelController = require('../controller/imovelController');
 const commentController = require('../controller/commentController');
 const interestedController = require('../controller/interestedController');
+const psychographicController = require('../controller/psychographicController');
 
 router.get('/users', userController.findAll);
 // router.get('/user', userController.findOneById);
@@ -16,6 +17,9 @@ router.post('/auth', userController.auth);
 
 router.get('/interested', interestedController.findInterested);
 router.post('/interesse', interestedController.store);
+
+router.get('/caracteristicas', psychographicController.findAll);
+router.post('/caracteristicas', psychographicController.store);
 
 router.get('/imoveis', imovelController.findAll);
 router.get('/imovel', imovelController.findOneById);

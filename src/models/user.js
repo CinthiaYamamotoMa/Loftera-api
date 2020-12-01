@@ -52,7 +52,8 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.image);
     User.hasMany(models.comments);
     User.belongsToMany(models.psychographicItem, {
-      through: "user_psychographicItem"
+      through: "user_psychographicItem",
+      as: 'caracteristicas'
     });
     User.belongsToMany(models.product, {
       through: "interested",
