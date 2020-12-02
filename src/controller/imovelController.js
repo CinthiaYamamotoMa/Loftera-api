@@ -83,4 +83,26 @@ module.exports = {
         }
     },
 
+    async updateAvaliable(req, res) {
+        const avaliable = req.body;
+
+        console.log(avaliable)
+
+        if (avaliable) {
+            const product = await imovelService.updateAvaliable(avaliable);
+            console.log(product)
+
+            const response = responseObj.success;
+            response.data = product;
+            res.json(response);
+        } else {
+            const response = responseObj.fail;
+            let message = "";
+            if (!avaliable) {
+                message = " user object was not found on request body; ";
+            }
+            res.status(400).json(response);
+        }
+    },
+
 }

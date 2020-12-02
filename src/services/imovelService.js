@@ -105,4 +105,22 @@ module.exports = {
         return imovel;
     },
 
+    async updateAvaliable(avaliable) {
+        const avaliacaoProduto = await address.findOne({
+            where: {
+                productId: avaliable.productId
+            }
+        })
+
+        if(avaliacaoProduto.avaliable) {
+            avaliacaoProduto.avaliable = false
+        } else {
+            avaliacaoProduto.avaliable = true
+        }
+        
+        await avaliacaoProduto.save();
+        return avaliacaoProduto;
+
+    },
+
 }

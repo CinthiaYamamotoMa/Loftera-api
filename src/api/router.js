@@ -26,6 +26,8 @@ router.post('/caracteristicas', psychographicController.store);
 
 router.post('/avaliar', ratingController.update);
 
+router.post('/avaliable', imovelController.updateAvaliable);
+
 router.get('/imoveis', imovelController.findAll);
 router.get('/imovel', imovelController.findOneById);
 
