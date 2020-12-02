@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     question: DataTypes.STRING,
     answer: DataTypes.STRING,
+    role: DataTypes.STRING,
     deleted: {
       type: DataTypes.BOOLEAN,
       defaultValue: false

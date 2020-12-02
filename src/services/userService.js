@@ -127,5 +127,12 @@ module.exports = {
             let message = "Senha antiga incorreta";
             return message;
         }
+    },
+
+    async updateRole(usuario) {
+        const userresponse = await user.findByPk(usuario.userId);
+        userresponse.role = usuario.role;
+        await userresponse.save();
+        return userresponse;
     }
 }

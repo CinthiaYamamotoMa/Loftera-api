@@ -145,5 +145,23 @@ module.exports = {
             }
             res.status(400).json(response);
         }
+    },
+
+    async updateRole(req, res) {
+        const user = req.body;
+
+        if (user) {
+            const userUpdated = await userService.updateRole(user);
+            const response = responseObj.success;
+            response.data = userUpdated;
+            res.json(response);
+        } else {
+            const response = responseObj.fail;
+            let message = "";
+            if (!user) {
+                message = " user object was not found on request body; ";
+            }
+            res.status(400).json(response);
+        }
     }
 }

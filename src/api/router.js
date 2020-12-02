@@ -4,6 +4,7 @@ const imovelController = require('../controller/imovelController');
 const commentController = require('../controller/commentController');
 const interestedController = require('../controller/interestedController');
 const psychographicController = require('../controller/psychographicController');
+const ratingController = require('../controller/ratingController');
 
 router.get('/users', userController.findAll);
 // router.get('/user', userController.findOneById);
@@ -15,11 +16,15 @@ router.put('/usersp/:id', userController.updatePassword);
 router.delete('/users/:id', userController.delete);
 router.post('/auth', userController.auth);
 
+router.post('/role', userController.updateRole);
+
 router.get('/interested', interestedController.findInterested);
 router.post('/interesse', interestedController.store);
 
 router.get('/caracteristicas', psychographicController.findAll);
 router.post('/caracteristicas', psychographicController.store);
+
+router.post('/avaliar', ratingController.update);
 
 router.get('/imoveis', imovelController.findAll);
 router.get('/imovel', imovelController.findOneById);
