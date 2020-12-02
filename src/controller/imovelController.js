@@ -65,13 +65,13 @@ module.exports = {
         }
     },
     async delete(req, res) {
-        const userId = req.params.id;
-        if (userId) {
-            const deleteResponse = await imovelService.delete(userId);
+        const imovelId = req.body.productId;
+        if (imovelId) {
+            const deleteResponse = await imovelService.delete(imovelId);
             const response = responseObj.success;
             if (!deleteResponse) {
                 response.data = null;
-                response.message = `user with id ${userId} was not found`;
+                response.message = `user with id ${imovelId} was not found`;
             } else {
                 response.data = deleteResponse;
             }
