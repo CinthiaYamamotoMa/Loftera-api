@@ -9,12 +9,15 @@ const ratingController = require('../controller/ratingController');
 router.get('/users', userController.findAll);
 // router.get('/user', userController.findOneById);
 router.get('/user/:id', userController.findOneById);
+router.get('/user/', userController.findOneById);
 router.get('/email', userController.findByEmail);
 router.post('/users', userController.store);
 router.put('/users/:id', userController.update);
 router.put('/usersp/:id', userController.updatePassword);
 router.delete('/users/:id', userController.delete);
 router.post('/auth', userController.auth);
+router.post('/avatar', userController.updateAvatar);
+router.post('/deleteAvatar', userController.deleteAvatar);
 
 router.post('/role', userController.updateRole);
 
