@@ -5,18 +5,6 @@ module.exports = {
     return queryInterface.bulkInsert('psychographicItem',
       [
         {
-          name: 'Fumante',
-          image: 'smoke.jpg',
-          icon: 'fas fa-smoking',
-          deleted: false,
-        },
-        {
-          name: 'Possuo animal',
-          image: 'pet.jpg',
-          icon: 'fas fa-paw',
-          deleted: false,
-        },
-        {
           name: 'Mulher',
           image: 'female.jpg',
           icon: 'fas fa-female',
@@ -32,6 +20,18 @@ module.exports = {
           name: 'Outros',
           image: 'others.png',
           icon: 'fas fa-venus-mars',
+          deleted: false,
+        },
+        {
+          name: 'Fumante',
+          image: 'smoke.jpg',
+          icon: 'fas fa-smoking',
+          deleted: false,
+        },
+        {
+          name: 'Possuo animal',
+          image: 'pet.jpg',
+          icon: 'fas fa-paw',
           deleted: false,
         },
       ]

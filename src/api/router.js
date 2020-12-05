@@ -28,6 +28,8 @@ router.post('/interesse', interestedController.store);
 router.get('/caracteristicas', psychographicController.findAll);
 router.post('/caracteristicas', psychographicController.store);
 
+router.get('/findUsers', psychographicController.findUsers);
+
 router.post('/avaliar', ratingController.update);
 
 router.post('/avaliable', imovelController.updateAvaliable);
