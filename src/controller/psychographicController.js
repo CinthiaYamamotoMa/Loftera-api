@@ -31,61 +31,45 @@ module.exports = {
     },
 
     async findUsers(req, res) {
-        console.log('aqui')
+        // console.log('aqui', req)
         var userId = 2;
         var caracteristicasUser = []
         var usersSemelhantes = []
         if (userId) {
-            var userFound = await psychographicService.findAllByUserId(userId);
+            var userFound = await psychographicService.findCaracteristicasUser(userId);
             var users = await psychographicService.findAllUsers();
 
             for (i = 0; i < userFound.dataValues.caracteristicas.length; i++) {
                 caracteristicasUser.push(userFound.dataValues.caracteristicas[i].dataValues.caracteristicas_user.dataValues.psychographicItemId)
             }
-
-            // VER SE JÁ ESTÁ DENTRO DO ARRAY
-
             // COLOCAR A PARTE DE LOCALIZAÇÃO AQUI
 
-            // EM RELAÇÃO AO GÊNERO - VERIFICAR O GÊNERO DA PESSOA BUSCADA E DA PESSOA QUE ESTÁ LOGADA
-            // users[i].dataValues.caracteristicas[j].dataValues.gender == 'F' && caracteristicasUser[cont] == 1
-            // users[i].dataValues.caracteristicas[j].dataValues.gender == 'M' && caracteristicasUser[cont] == 2
-            // users[i].dataValues.caracteristicas[j].dataValues.gender == 'O' && caracteristicasUser[cont] == 3
-
-            for (cont = 0; cont < caracteristicasUser.length; cont++) {
-                for (i = 0; i < users.length; i++) {
-                    for (j = 0; j < users[i].dataValues.caracteristicas.length; j++) {
-                        // console.log(users[i].dataValues.caracteristicas[j].dataValues)
-                        // console.log('tem >>>> ', users[i].dataValues.caracteristicas[j].dataValues)
-
-                        // Verificando se estu add a própria pessoa no array e se as caracteristicas batem
-
-                        // >>>>>>>>>>>>>> if (usersSemelhantes.indexOf(users[i].dataValues.caracteristicas[j].dataValues) != -1) {
-                        //     console.log('tem >>>> ', users[i].dataValues.caracteristicas[j].dataValues)
-                        // } else {
-                        //     console.log('ELSE >>>> ', users[i].dataValues.caracteristicas[j].dataValues)
-                            
-                            if (users[i].dataValues.caracteristicas[j].dataValues.id != userId && users[i].dataValues.caracteristicas[j].dataValues.caracteristicas_user.psychographicItemId == caracteristicasUser[cont]) {
-                                if (caracteristicasUser[cont] <= 3) {
-                                    if(users[i].dataValues.caracteristicas[j].dataValues.gender == 'F' && caracteristicasUser[cont] == 1) {
-                                        usersSemelhantes.push(users[i].dataValues.caracteristicas[j].dataValues)
-                                    } else if (users[i].dataValues.caracteristicas[j].dataValues.gender == 'M' && caracteristicasUser[cont] == 2){
-                                        usersSemelhantes.push(users[i].dataValues.caracteristicas[j].dataValues)
-                                    } else if (users[i].dataValues.caracteristicas[j].dataValues.gender == 'O' && caracteristicasUser[cont] == 3) {
-                                        usersSemelhantes.push(users[i].dataValues.caracteristicas[j].dataValues)
-                                    }
-                                } else {
+            for (i = 0; i < users.length; i++) {
+                for (j = 0; j < users[i].dataValues.caracteristicas.length; j++) {
+                    // Verificar se é o próprio usuário e se a caracteristica é a mesma pra 
+                    if (users[i].dataValues.caracteristicas[j].dataValues.id != userId && users[i].dataValues.caracteristicas[j].dataValues.caracteristicas_user.psychographicItemId == caracteristicasUser[i]) {
+                        if (caracteristicasUser[i] <= 3) {
+                            if (users[i].dataValues.caracteristicas[j].dataValues.gender == 'F' && caracteristicasUser[i] == 1) {
+                                if (!usersSemelhantes.includes(users[i].dataValues.caracteristicas[j].dataValues)) {
+                                    usersSemelhantes.push(users[i].dataValues.caracteristicas[j].dataValues)
+                                }
+                            } else if (users[i].dataValues.caracteristicas[j].dataValues.gender == 'M' && caracteristicasUser[i] == 2) {
+                                if (!usersSemelhantes.includes(users[i].dataValues.caracteristicas[j].dataValues)) {
+                                    usersSemelhantes.push(users[i].dataValues.caracteristicas[j].dataValues)
+                                }
+                            } else if (users[i].dataValues.caracteristicas[j].dataValues.gender == 'O' && caracteristicasUser[i] == 3) {
+                                if (!usersSemelhantes.includes(users[i].dataValues.caracteristicas[j].dataValues)) {
                                     usersSemelhantes.push(users[i].dataValues.caracteristicas[j].dataValues)
                                 }
                             }
-                        // }
-
+                        } else {
+                            usersSemelhantes.push(users[i].dataValues.caracteristicas[j].dataValues)
+                        }
                     }
+                    // }
+
                 }
             }
-
-            // console.log(caracteristicasUser)
-            // console.log(usersSemelhantes)
 
             const response = responseObj.success;
             if (!userFound) {

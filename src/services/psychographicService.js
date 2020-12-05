@@ -21,7 +21,7 @@ module.exports = {
         return caracteristicas;
     },
 
-    async findAllByUserId(id) {
+    async findCaracteristicasUser(id) {
         const usuario = await user.findOne({
             where: {
                 id: id
@@ -51,7 +51,7 @@ module.exports = {
             ]
         });
 
-        // console.log(caracteristicas[0])
+        // console.log(caracteristicas[0].caracteristicas)
 
         return caracteristicas;
     },
