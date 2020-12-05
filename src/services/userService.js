@@ -2,7 +2,8 @@ const { user,
     product,
     ratings,
     attributes,
-    image } = require('../models/');
+    image,
+    faculdade } = require('../models/');
 
 module.exports = {
 
@@ -22,7 +23,10 @@ module.exports = {
                 id: id
             },
             include: [{
-                model: image
+                model: image,
+            },
+            {
+                model: faculdade,
             }]
         });
         return userresponse;
