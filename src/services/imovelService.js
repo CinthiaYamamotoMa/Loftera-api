@@ -10,6 +10,8 @@ const
         comments
     } = require('../models/');
 
+const { Op, Sequelize, sequelize } = require("sequelize");
+
 module.exports = {
 
     async findAll() {
@@ -17,6 +19,33 @@ module.exports = {
             where: {
                 deleted: false,
                 avaliable: true
+            },
+            include: [{
+                model: product,
+                include: [
+                    {
+                        model: ratings,
+                    },
+                    {
+                        model: attributes,
+                    },
+                ]
+            }]
+        });
+        return imoveis;
+    },
+
+    async findPesquisa(pesquisa) {
+        console.log(pesquisa)
+        const imoveis = await address.findAll({
+            where: {
+                deleted: false,
+                avaliable: true,
+                [Op.or]: [
+                    { street: pesquisa.local },
+                    { district: pesquisa.local },
+                    { street: pesquisa.local },
+                ]
             },
             include: [{
                 model: product,
@@ -112,12 +141,12 @@ module.exports = {
             }
         })
 
-        if(avaliacaoProduto.avaliable) {
+        if (avaliacaoProduto.avaliable) {
             avaliacaoProduto.avaliable = false
         } else {
             avaliacaoProduto.avaliable = true
         }
-        
+
         await avaliacaoProduto.save();
         return avaliacaoProduto;
 
