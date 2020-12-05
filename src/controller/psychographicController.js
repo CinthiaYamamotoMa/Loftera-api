@@ -31,39 +31,39 @@ module.exports = {
     },
 
     async findUsers(req, res) {
-        // console.log('aqui', req)
-        var userId = 2;
-        var caracteristicasUser = []
+        var userId = req.query.id;
+
+        var caracteristicasId_User = []
         var usersSemelhantes = []
         if (userId) {
             var userFound = await psychographicService.findCaracteristicasUser(userId);
-            var users = await psychographicService.findAllUsers();
+            var caracteristicas = await psychographicService.findAllUsers();
 
             for (i = 0; i < userFound.dataValues.caracteristicas.length; i++) {
-                caracteristicasUser.push(userFound.dataValues.caracteristicas[i].dataValues.caracteristicas_user.dataValues.psychographicItemId)
+                caracteristicasId_User.push(userFound.dataValues.caracteristicas[i].dataValues.caracteristicas_user.dataValues.psychographicItemId)
             }
             // COLOCAR A PARTE DE LOCALIZAÇÃO AQUI
 
-            for (i = 0; i < users.length; i++) {
-                for (j = 0; j < users[i].dataValues.caracteristicas.length; j++) {
+            for (i = 0; i < caracteristicas.length; i++) {
+                for (j = 0; j < caracteristicas[i].dataValues.caracteristicas.length; j++) {
                     // Verificar se é o próprio usuário e se a caracteristica é a mesma pra 
-                    if (users[i].dataValues.caracteristicas[j].dataValues.id != userId && users[i].dataValues.caracteristicas[j].dataValues.caracteristicas_user.psychographicItemId == caracteristicasUser[i]) {
-                        if (caracteristicasUser[i] <= 3) {
-                            if (users[i].dataValues.caracteristicas[j].dataValues.gender == 'F' && caracteristicasUser[i] == 1) {
-                                if (!usersSemelhantes.includes(users[i].dataValues.caracteristicas[j].dataValues)) {
-                                    usersSemelhantes.push(users[i].dataValues.caracteristicas[j].dataValues)
+                    if (caracteristicas[i].dataValues.caracteristicas[j].dataValues.id != userId && caracteristicas[i].dataValues.caracteristicas[j].dataValues.caracteristicas_user.psychographicItemId == caracteristicasId_User[i]) {
+                        if (caracteristicasId_User[i] <= 3) {
+                            if (caracteristicas[i].dataValues.caracteristicas[j].dataValues.gender == 'F' && caracteristicasId_User[i] == 1) {
+                                if (!usersSemelhantes.includes(caracteristicas[i].dataValues.caracteristicas[j].dataValues)) {
+                                    usersSemelhantes.push(caracteristicas[i].dataValues.caracteristicas[j].dataValues)
                                 }
-                            } else if (users[i].dataValues.caracteristicas[j].dataValues.gender == 'M' && caracteristicasUser[i] == 2) {
-                                if (!usersSemelhantes.includes(users[i].dataValues.caracteristicas[j].dataValues)) {
-                                    usersSemelhantes.push(users[i].dataValues.caracteristicas[j].dataValues)
+                            } else if (caracteristicas[i].dataValues.caracteristicas[j].dataValues.gender == 'M' && caracteristicasId_User[i] == 2) {
+                                if (!usersSemelhantes.includes(caracteristicas[i].dataValues.caracteristicas[j].dataValues)) {
+                                    usersSemelhantes.push(caracteristicas[i].dataValues.caracteristicas[j].dataValues)
                                 }
-                            } else if (users[i].dataValues.caracteristicas[j].dataValues.gender == 'O' && caracteristicasUser[i] == 3) {
-                                if (!usersSemelhantes.includes(users[i].dataValues.caracteristicas[j].dataValues)) {
-                                    usersSemelhantes.push(users[i].dataValues.caracteristicas[j].dataValues)
+                            } else if (caracteristicas[i].dataValues.caracteristicas[j].dataValues.gender == 'O' && caracteristicasId_User[i] == 3) {
+                                if (!usersSemelhantes.includes(caracteristicas[i].dataValues.caracteristicas[j].dataValues)) {
+                                    usersSemelhantes.push(caracteristicas[i].dataValues.caracteristicas[j].dataValues)
                                 }
                             }
                         } else {
-                            usersSemelhantes.push(users[i].dataValues.caracteristicas[j].dataValues)
+                            usersSemelhantes.push(caracteristicas[i].dataValues.caracteristicas[j].dataValues)
                         }
                     }
                     // }
