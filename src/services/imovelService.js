@@ -6,7 +6,7 @@ const
         attributes,
         user,
         rules,
-        interested,
+        image,
         comments
     } = require('../models/');
 
@@ -71,11 +71,19 @@ module.exports = {
                 {
                     model: product,
                     include: [
-                        { model: user },
+                        {
+                            model: user,
+                            include: [
+                                { model: image }
+                            ]
+                        },
                         {
                             model: user,
                             as: 'interessados',
-                            required: false
+                            required: false,
+                            include: [{
+                                model: image
+                            }]
                         },
                         { model: ratings, },
                         { model: attributes, },
@@ -83,7 +91,12 @@ module.exports = {
                         {
                             model: comments,
                             include: [
-                                { model: user }
+                                {
+                                    model: user,
+                                    include: [
+                                        { model: image }
+                                    ]
+                                }
                             ]
                         },
                     ]

@@ -5,6 +5,7 @@ const commentController = require('../controller/commentController');
 const interestedController = require('../controller/interestedController');
 const psychographicController = require('../controller/psychographicController');
 const ratingController = require('../controller/ratingController');
+const faculdadeController = require('../controller/faculdadeController');
 
 router.get('/users', userController.findAll);
 // router.get('/user', userController.findOneById);
@@ -37,5 +38,7 @@ router.post('/deleteImovel', imovelController.delete);
 router.get('/imoveis/busca', imovelController.findPesquisa);
 
 router.post('/comment', commentController.store);
+
+router.get('/facul', faculdadeController.findOneById);
 
 module.exports = router;

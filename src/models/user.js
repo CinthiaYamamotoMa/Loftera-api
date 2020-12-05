@@ -51,6 +51,7 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = (models) => {
     User.hasMany(models.product);
     User.hasOne(models.image);
+    User.hasOne(models.faculdade);
     User.hasMany(models.comments);
     User.belongsToMany(models.psychographicItem, {
       through: "user_psychographicItem",
