@@ -1,7 +1,9 @@
 const { user,
     product,
     ratings,
-    attributes } = require('../models/');
+    attributes,
+    image,
+    faculdade } = require('../models/');
 
 module.exports = {
 
@@ -10,8 +12,23 @@ module.exports = {
         return users;
     },
 
-    async findOneById(id) {
+    async findById(id) {
         const userresponse = await user.findByPk(id);
+        return userresponse;
+    },
+
+    async findOneById(id) {
+        const userresponse = await user.findOne({
+            where: {
+                id: id
+            },
+            include: [{
+                model: image,
+            },
+            {
+                model: faculdade,
+            }]
+        });
         return userresponse;
     },
 
@@ -127,5 +144,37 @@ module.exports = {
             let message = "Senha antiga incorreta";
             return message;
         }
-    }
+    },
+
+    async updateRole(usuario) {
+        const userresponse = await user.findByPk(usuario.userId);
+        userresponse.role = usuario.role;
+        await userresponse.save();
+        return userresponse;
+    },
+
+    async updateAvatar(usuario, filename) {
+        const avatar = await image.findOne({
+            where: {
+                userId: usuario
+            }
+        });
+        avatar.name = filename;
+        avatar.deleted = false;
+
+        await avatar.save();
+        return avatar;
+    },
+
+    async deleteAvatar(usuario) {
+        const avatar = await image.findOne({
+            where: {
+                userId: usuario
+            }
+        });
+        avatar.deleted = true;
+
+        await avatar.save();
+        return avatar;
+    },
 }

@@ -14,8 +14,10 @@ module.exports = {
                 const product = await imovelService.findByPk(receivedUser.productId)
 
                 await createdUser.addInteressados(product.id)
-
-                res.status(200);
+                
+                const response = responseObj.success;
+                response.data = createdUser;
+                res.json(response);
             } else {
                 const response = responseObj.fail;
                 response.message = "user object was not found on request body";

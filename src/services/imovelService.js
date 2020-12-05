@@ -6,9 +6,11 @@ const
         attributes,
         user,
         rules,
-        interested,
+        image,
         comments
     } = require('../models/');
+
+const { Op, Sequelize, sequelize } = require("sequelize");
 
 module.exports = {
 
@@ -17,6 +19,33 @@ module.exports = {
             where: {
                 deleted: false,
                 avaliable: true
+            },
+            include: [{
+                model: product,
+                include: [
+                    {
+                        model: ratings,
+                    },
+                    {
+                        model: attributes,
+                    },
+                ]
+            }]
+        });
+        return imoveis;
+    },
+
+    async findPesquisa(pesquisa) {
+        console.log(pesquisa)
+        const imoveis = await address.findAll({
+            where: {
+                deleted: false,
+                avaliable: true,
+                [Op.or]: [
+                    { street: pesquisa.local },
+                    { district: pesquisa.local },
+                    { street: pesquisa.local },
+                ]
             },
             include: [{
                 model: product,
@@ -42,11 +71,19 @@ module.exports = {
                 {
                     model: product,
                     include: [
-                        { model: user },
+                        {
+                            model: user,
+                            include: [
+                                { model: image }
+                            ]
+                        },
                         {
                             model: user,
                             as: 'interessados',
-                            required: false
+                            required: false,
+                            include: [{
+                                model: image
+                            }]
                         },
                         { model: ratings, },
                         { model: attributes, },
@@ -54,7 +91,12 @@ module.exports = {
                         {
                             model: comments,
                             include: [
-                                { model: user }
+                                {
+                                    model: user,
+                                    include: [
+                                        { model: image }
+                                    ]
+                                }
                             ]
                         },
                     ]
@@ -103,6 +145,24 @@ module.exports = {
             await imovel.save();
         }
         return imovel;
+    },
+
+    async updateAvaliable(avaliable) {
+        const avaliacaoProduto = await address.findOne({
+            where: {
+                productId: avaliable.productId
+            }
+        })
+
+        if (avaliacaoProduto.avaliable) {
+            avaliacaoProduto.avaliable = false
+        } else {
+            avaliacaoProduto.avaliable = true
+        }
+
+        await avaliacaoProduto.save();
+        return avaliacaoProduto;
+
     },
 
 }

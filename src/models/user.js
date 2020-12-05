@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     question: DataTypes.STRING,
     answer: DataTypes.STRING,
+    role: DataTypes.STRING,
     deleted: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
@@ -49,7 +50,8 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = (models) => {
     User.hasMany(models.product);
-    User.hasMany(models.image);
+    User.hasOne(models.image);
+    User.hasOne(models.faculdade);
     User.hasMany(models.comments);
     User.belongsToMany(models.psychographicItem, {
       through: "caracteristicas_user",

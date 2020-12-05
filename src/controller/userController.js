@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const userService = require('../services/userService');
 const responseObj = require('../config/response');
-const { user } = require('../models/');
+const { user, image } = require('../models/');
 const { auth } = require('../services/userService');
 
 // all routes bellow have the prefix /user - keep that in mind when adding/editin routes.
@@ -14,7 +14,7 @@ module.exports = {
         res.json(response);
     },
     async findOneById(req, res) {
-        const userId = req.params.id;
+        const userId = req.body.id;
         if (userId) {
             const userFound = await userService.findOneById(userId);
             const response = responseObj.success;
@@ -109,7 +109,10 @@ module.exports = {
         await user.findOne({
             where: {
                 email: email
-            }
+            },
+            include: [{
+                model: image
+            }]
         }).then((foundUser) => {
 
             if (foundUser) {
@@ -138,10 +141,67 @@ module.exports = {
             const response = responseObj.fail;
             let message = "";
             if (!receivedUser) {
-                message = " user object was not found on request body; ";
+                message = "user object was not found on request body; ";
             }
             if (!userId) {
-                message += " userId object was not found on request params; ";
+                message += "userId object was not found on request params; ";
+            }
+            res.status(400).json(response);
+        }
+    },
+
+    async updateRole(req, res) {
+        const user = req.body;
+
+        if (user) {
+            const userUpdated = await userService.updateRole(user);
+            console.log(userUpdated)
+            const response = responseObj.success;
+            response.data = userUpdated;
+            res.json(response);
+        } else {
+            const response = responseObj.fail;
+            let message = "";
+            if (!user) {
+                message = "user object was not found on request body; ";
+            }
+            res.status(400).json(response);
+        }
+    },
+
+    async updateAvatar(req, res) {
+        const user = req.body.userId;
+        const file = req.body.filename
+        if (user) {
+            const avatar = await userService.updateAvatar(user, file);
+            const response = responseObj.success;
+            response.data = avatar;
+            res.json(response);
+        } else {
+            const response = responseObj.fail;
+            let message = "";
+            if (!user) {
+                message = "user object was not found on request body; ";
+            }
+            if(!file) {
+                message = "file object was not found on request body; ";
+            }
+            res.status(400).json(response);
+        }
+    },
+
+    async deleteAvatar(req, res) {
+        const user = req.body.userId;
+        if (user) {
+            const avatar = await userService.deleteAvatar(user);
+            const response = responseObj.success;
+            response.data = avatar;
+            res.json(response);
+        } else {
+            const response = responseObj.fail;
+            let message = "";
+            if (!user) {
+                message = "user object was not found on request body; ";
             }
             res.status(400).json(response);
         }

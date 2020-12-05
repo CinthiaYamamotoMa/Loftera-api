@@ -6,12 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         autoIncrement: true,
       },
-      description: DataTypes.STRING,
-      url: DataTypes.STRING,
-      thumbnail: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
-      },
+      name: DataTypes.STRING,
       deleted: {
         type: DataTypes.BOOLEAN,
         defaultValue: false
@@ -30,9 +25,11 @@ module.exports = (sequelize, DataTypes) => {
 
     Image.associate = (models) => {
         Image.belongsTo(models.product, {
-          foreignKey:"id"
+          foreignKey:"productId"
         });
-
+        Image.belongsTo(models.user, {
+          foreignKey:"userId"
+        });
       };
   
     return Image;
