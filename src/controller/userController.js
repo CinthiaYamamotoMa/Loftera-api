@@ -53,6 +53,7 @@ module.exports = {
         const receivedUser = req.body;
         if (receivedUser) {
             const createdUser = await userService.storeUser(receivedUser);
+            userService.storeAvatar(createdUser.dataValues.id)
             const response = responseObj.success;
             response.data = createdUser;
             res.json(response);

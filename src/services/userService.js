@@ -79,11 +79,9 @@ module.exports = {
     },
 
     async storeUser(userReceived) {
-        console.log(userReceived)
         userReceived.createdAt = new Date();
         userReceived.updatedAt = new Date();
         const createdUser = await user.create(userReceived);
-        console.log(createdUser)
 
         return createdUser;
     },
@@ -164,6 +162,20 @@ module.exports = {
 
         await avatar.save();
         return avatar;
+    },
+
+    async storeAvatar(userId) {
+        var avatar = {
+            name: 'default.png',
+            deleted: false,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            userId: userId,
+        }
+        
+        var createdImage = await image.create(avatar);
+        
+        return createdImage;
     },
 
     async deleteAvatar(usuario) {
