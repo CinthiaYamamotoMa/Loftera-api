@@ -7,6 +7,7 @@ const imovelService = require('../services/imovelService');
 module.exports = {
 
     async store(req, res) {
+        console.log('store')
         const receivedUser = req.query;
         try {
             if (receivedUser) {
@@ -14,6 +15,32 @@ module.exports = {
                 const product = await imovelService.findByPk(receivedUser.productId)
 
                 await createdUser.addInteressados(product.id)
+                
+                const response = responseObj.success;
+                response.data = createdUser;
+                res.json(response);
+            } else {
+                const response = responseObj.fail;
+                response.message = "user object was not found on request body";
+                res.status(400).json(response);
+            }
+        } catch (error) {
+            const response = responseObj.fail;
+            response.message = error.message;
+            res.status(400).json(response)
+        }
+
+    },
+
+    async remove(req, res) {
+        console.log('remove')
+        const receivedUser = req.query;
+        try {
+            if (receivedUser) {
+                const createdUser = await userService.storeInteresse(receivedUser);
+                const product = await imovelService.findByPk(receivedUser.productId)
+
+                await createdUser.removeInteressados(product.id)
                 
                 const response = responseObj.success;
                 response.data = createdUser;

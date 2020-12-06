@@ -1,5 +1,6 @@
 const { psychographicItem,
-    user } = require('../models/');
+        user,
+        image } = require('../models/');
 
 module.exports = {
 
@@ -46,7 +47,10 @@ module.exports = {
                 {
                     model: user,
                     as: 'caracteristicas',
-                    attributes: ['id', 'name', 'gender']
+                    attributes: ['id', 'name', 'gender'],
+                    include: [{
+                        model: image
+                    }]
                 },
             ]
         });
