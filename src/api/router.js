@@ -24,6 +24,7 @@ router.post('/role', userController.updateRole);
 
 router.get('/interested', interestedController.findInterested);
 router.post('/interesse', interestedController.store);
+router.post('/removeInteresse', interestedController.remove);
 
 router.get('/caracteristicas', psychographicController.findAll);
 router.post('/caracteristicas', psychographicController.store);
