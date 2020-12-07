@@ -2,6 +2,7 @@ const router = require('express').Router();
 const imovelService = require('../services/imovelService');
 const responseObj = require('../config/response');
 const { address } = require('../models/');
+const axios = require('axios').default;
 
 // all routes bellow have the prefix /user - keep that in mind when adding/editin routes.
 module.exports = {
@@ -43,7 +44,7 @@ module.exports = {
             res.status(400).json(response);
         }
     },
-    async update(req, res){
+    async update(req, res) {
         const receivedUser = req.body;
         const userId = req.params.id;
 
@@ -107,35 +108,54 @@ module.exports = {
     async findPesquisa(req, res) {
         var pesquisa = req.body
         var imoveisEncontrados = []
-        var imoveis = await imovelService.findPesquisa(pesquisa);
-        for(i = 0; i < imoveis.length; i++) {
-            if(req.body.tipo) {
-                if(imoveis[i].dataValues.addressTypeId == req.body.tipo) {
-                    if(!imoveisEncontrados.includes(imoveis[i])) {
+        var imoveisAll
+        if (pesquisa.raio != "") {
+            imoveisAll = await imovelService.findAll()
+        } else {
+            imoveisAll = await imovelService.findPesquisa(pesquisa);
+        }
+        var imoveis = []
+        if (pesquisa.raio != "") {
+            pesquisa.raio = pesquisa.raio * 1000
+
+            for (i = 0; i < imoveisAll.length; i++) {
+                await axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${imoveisAll[i].latitude},${imoveisAll[i].longitude}&destinations=${pesquisa.coordenadas.lat},${pesquisa.coordenadas.lng}&key=AIzaSyAajnzIlUy_7lAOHZe9PyC3RFX80lqC2fE`)
+                    .then(response => {
+                        if (parseInt(pesquisa.raio) >= parseInt(response.data.rows[0].elements[0].distance.value))
+                            imoveis.push(imoveisAll[i])
+                    })
+            }
+        } else {
+            imoveis = imoveisAll
+        }
+        for (i = 0; i < imoveis.length; i++) {
+            if (req.body.tipo) {
+                if (imoveis[i].dataValues.addressTypeId == req.body.tipo) {
+                    if (!imoveisEncontrados.includes(imoveis[i])) {
                         imoveisEncontrados.push(imoveis[i])
                     }
                 }
             }
-            if(req.body.avaliacao) {
-                var avaliacaoTotal = 
-                ((  parseFloat(imoveis[i].dataValues.product.rating.limpeza) + 
-                    parseFloat(imoveis[i].dataValues.product.rating.comunicacao) + 
-                    parseFloat(imoveis[i].dataValues.product.rating.checkin) + 
-                    parseFloat(imoveis[i].dataValues.product.rating.precisao) + 
-                    parseFloat(imoveis[i].dataValues.product.rating.localizacao) + 
-                    parseFloat(imoveis[i].dataValues.product.rating.valor))/6)
-                    /parseFloat(imoveis[i].dataValues.product.rating.qtdAvaliacoes)
-                
-                if(avaliacaoTotal >= req.body.avaliacao) {
-                    if(!imoveisEncontrados.includes(imoveis[i])) {
+            if (req.body.avaliacao) {
+                var avaliacaoTotal =
+                    ((parseFloat(imoveis[i].dataValues.product.rating.limpeza) +
+                        parseFloat(imoveis[i].dataValues.product.rating.comunicacao) +
+                        parseFloat(imoveis[i].dataValues.product.rating.checkin) +
+                        parseFloat(imoveis[i].dataValues.product.rating.precisao) +
+                        parseFloat(imoveis[i].dataValues.product.rating.localizacao) +
+                        parseFloat(imoveis[i].dataValues.product.rating.valor)) / 6)
+                    / parseFloat(imoveis[i].dataValues.product.rating.qtdAvaliacoes)
+
+                if (avaliacaoTotal >= req.body.avaliacao) {
+                    if (!imoveisEncontrados.includes(imoveis[i])) {
                         imoveisEncontrados.push(imoveis[i])
                     }
                 }
             }
-            if(req.body.max) {
+            if (req.body.max) {
                 var valorTotal = (imoveis[i].dataValues.product.aluguel + imoveis[i].dataValues.product.condo + imoveis[i].dataValues.product.iptu)
-                if(valorTotal <= req.body.max) {
-                    if(!imoveisEncontrados.includes(imoveis[i])) {
+                if (valorTotal <= req.body.max) {
+                    if (!imoveisEncontrados.includes(imoveis[i])) {
                         imoveisEncontrados.push(imoveis[i])
                     }
                 }
@@ -143,16 +163,12 @@ module.exports = {
         }
 
         const response = responseObj.success;
-console.log(req.body.avaliacao)
-console.log(req.body.tipo)
-console.log(req.body.max)
-        if(req.body.avaliacao == "" && req.body.tipo == undefined && req.body.max == ""){
+        if (req.body.avaliacao == "" && req.body.tipo == undefined && req.body.max == "") {
             response.data = imoveis;
         } else {
             response.data = imoveisEncontrados;
         }
-        console.log(response.data)
-        
+
         res.json(response);
     },
 }
