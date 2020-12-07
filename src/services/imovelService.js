@@ -10,6 +10,8 @@ const
         comments
     } = require('../models/');
 
+const axios = require('axios').default;
+
 const { Op, Sequelize, sequelize } = require("sequelize");
 
 module.exports = {
@@ -118,8 +120,32 @@ module.exports = {
     },
 
     async storeUser(imovelNovo) {
-        const imovel = await address.create(imovelNovo);
-        return imovel;
+        console.log(imovelNovo)
+        imovelNovo.createdAt = new Date();
+        imovelNovo.updatedAt = new Date();
+        const createdImovel = await product.create(imovelNovo);
+        console.log(imovelNovo)
+
+        return createdImovel;
+    },
+
+    async storeAddress(enderecoNovo) {
+        let resposta = new Object();
+        await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${enderecoNovo.cep}&key=AIzaSyAajnzIlUy_7lAOHZe9PyC3RFX80lqC2fE`)
+            .then(response => {
+                console.log(response),
+                resposta = response.data.results[0].geometry.location;
+            });
+        console.log(enderecoNovo);
+        enderecoNovo.createdAt = new Date();
+        enderecoNovo.updatedAt = new Date();
+        enderecoNovo.latitude = resposta.lat;
+        enderecoNovo.longitude = resposta.lng;
+        const createdEndereco = await address.create(enderecoNovo);
+
+        console.log(enderecoNovo)
+
+        return enderecoNovo;
     },
 
     async updateUser(userReceived, id) {

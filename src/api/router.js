@@ -6,6 +6,7 @@ const interestedController = require('../controller/interestedController');
 const psychographicController = require('../controller/psychographicController');
 const ratingController = require('../controller/ratingController');
 const faculdadeController = require('../controller/faculdadeController');
+const axios = require('axios').default;
 
 router.get('/users', userController.findAll);
 // router.get('/user', userController.findOneById);
@@ -31,13 +32,17 @@ router.post('/caracteristicas', psychographicController.store);
 router.get('/findUsers', psychographicController.findUsers);
 
 router.post('/avaliar', ratingController.update);
+router.post('/avaliacao', ratingController.store);
 
 router.post('/avaliable', imovelController.updateAvaliable);
 
 router.get('/imoveis', imovelController.findAll);
+router.post('/imoveis', imovelController.store);
 router.get('/imovel', imovelController.findOneById);
 router.post('/deleteImovel', imovelController.delete);
 router.get('/imoveis/busca', imovelController.findPesquisa);
+
+router.post('/endereco', imovelController.storeEndereco);
 
 router.post('/comment', commentController.store);
 

@@ -6,7 +6,7 @@ const { user,
 module.exports = {
 
     async update(avaliacao) {
-        const avaliacaoProduto = await ratings.findByPk(avaliacao.productId )
+        const avaliacaoProduto = await ratings.findByPk(avaliacao.productId)
 
         avaliacaoProduto.limpeza = parseInt(avaliacaoProduto.limpeza) + parseInt(avaliacao.limpeza)
         avaliacaoProduto.comunicacao = parseInt(avaliacaoProduto.comunicacao) + parseInt(avaliacao.comunicacao)
@@ -21,14 +21,11 @@ module.exports = {
 
     },
 
-    async store(avaliacao) {
-        const avaliacaoProduto = await ratings.findOne({
-            raw: true,
-            where: {
-                productId: avaliacao.productId
-            }
-        });
+    async store(avaliacaoNova) {
+        console.log(avaliacaoNova)
+        const createdRating = await ratings.create(avaliacaoNova);
+        console.log(createdRating)
 
-        return avaliacaoProduto;
-    },
+    return avaliacaoNova;
+},
 }
