@@ -7,6 +7,21 @@ const axios = require('axios').default;
 // all routes bellow have the prefix /user - keep that in mind when adding/editin routes.
 module.exports = {
 
+    async storeEndereco(req, res){
+            const receivedUser = req.body;
+            if (receivedUser) {
+                const createdUser = await imovelService.storeAddress(receivedUser);
+                const response = responseObj.success;
+                response.data = createdUser;
+                res.json(response);
+            } else {
+                const response = responseObj.fail;
+                response.message = "user object was not found on request body";
+                res.status(400).json(response);
+            }
+
+    },
+
     async findAll(req, res) {
         const imoveis = await imovelService.findAll();
         const response = responseObj.success;
@@ -108,6 +123,7 @@ module.exports = {
     async findPesquisa(req, res) {
         var pesquisa = req.body
         var imoveisEncontrados = []
+
         var imoveisAll
         if (pesquisa.raio != "") {
             imoveisAll = await imovelService.findAll()
@@ -128,6 +144,7 @@ module.exports = {
         } else {
             imoveis = imoveisAll
         }
+
         for (i = 0; i < imoveis.length; i++) {
             if (req.body.tipo) {
                 if (imoveis[i].dataValues.addressTypeId == req.body.tipo) {
@@ -163,12 +180,13 @@ module.exports = {
         }
 
         const response = responseObj.success;
+
         if (req.body.avaliacao == "" && req.body.tipo == undefined && req.body.max == "") {
             response.data = imoveis;
         } else {
             response.data = imoveisEncontrados;
         }
-
+      
         res.json(response);
     },
 }
