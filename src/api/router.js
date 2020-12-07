@@ -6,6 +6,8 @@ const interestedController = require('../controller/interestedController');
 const psychographicController = require('../controller/psychographicController');
 const ratingController = require('../controller/ratingController');
 const faculdadeController = require('../controller/faculdadeController');
+const rulesController = require('../controller/rulesController');
+const attributesController = require('../controller/attributesController');
 
 router.get('/users', userController.findAll);
 // router.get('/user', userController.findOneById);
@@ -28,6 +30,10 @@ router.post('/removeInteresse', interestedController.remove);
 
 router.get('/caracteristicas', psychographicController.findAll);
 router.post('/caracteristicas', psychographicController.store);
+
+router.get('/rules', rulesController.findAll);
+
+router.get('/attributes', attributesController.findAll);
 
 router.get('/findUsers', psychographicController.findUsers);
 
