@@ -123,7 +123,28 @@ module.exports = {
     async findPesquisa(req, res) {
         var pesquisa = req.body
         var imoveisEncontrados = []
-        var imoveis = await imovelService.findPesquisa(pesquisa);
+
+        var imoveisAll
+        if (pesquisa.raio != "") {
+            imoveisAll = await imovelService.findAll()
+        } else {
+            imoveisAll = await imovelService.findPesquisa(pesquisa);
+        }
+        var imoveis = []
+        if (pesquisa.raio != "") {
+            pesquisa.raio = pesquisa.raio * 1000
+
+            for (i = 0; i < imoveisAll.length; i++) {
+                await axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${imoveisAll[i].latitude},${imoveisAll[i].longitude}&destinations=${pesquisa.coordenadas.lat},${pesquisa.coordenadas.lng}&key=AIzaSyAajnzIlUy_7lAOHZe9PyC3RFX80lqC2fE`)
+                    .then(response => {
+                        if (parseInt(pesquisa.raio) >= parseInt(response.data.rows[0].elements[0].distance.value))
+                            imoveis.push(imoveisAll[i])
+                    })
+            }
+        } else {
+            imoveis = imoveisAll
+        }
+
         for (i = 0; i < imoveis.length; i++) {
             if (req.body.tipo) {
                 if (imoveis[i].dataValues.addressTypeId == req.body.tipo) {
@@ -159,16 +180,13 @@ module.exports = {
         }
 
         const response = responseObj.success;
-        console.log(req.body.avaliacao)
-        console.log(req.body.tipo)
-        console.log(req.body.max)
+
         if (req.body.avaliacao == "" && req.body.tipo == undefined && req.body.max == "") {
             response.data = imoveis;
         } else {
             response.data = imoveisEncontrados;
         }
-        console.log(response.data)
-
+      
         res.json(response);
     },
 }
