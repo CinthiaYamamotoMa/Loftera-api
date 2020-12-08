@@ -13,6 +13,7 @@ const
 const axios = require('axios').default;
 
 const { Op, Sequelize, sequelize } = require("sequelize");
+const { findAllByUserId } = require('../controller/imovelController');
 
 module.exports = {
 
@@ -33,6 +34,29 @@ module.exports = {
                     },
                 ]
             }]
+        });
+        return imoveis;
+    },
+
+    async findAllByUserId(id) {
+        const imoveis = await user.findOne({
+            where: {
+                deleted: false,
+                id: id
+            },
+            include: [
+                {
+                    model: product,
+                    include: [
+                        {
+                            model: ratings,
+                        },
+                        {
+                            model: attributes,
+                        },
+                    ]
+                },
+            ]
         });
         return imoveis;
     },

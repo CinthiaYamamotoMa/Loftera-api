@@ -28,6 +28,15 @@ module.exports = {
         response.data = imoveis;
         res.json(response);
     },
+
+    async findAllByUserId(req, res) {
+        const userId = req.query.userId;
+        const imoveis = await imovelService.findAllByUserId(userId);
+        const response = responseObj.success;
+        response.data = imoveis.dataValues.products;
+        res.json(response);
+    },
+
     async findOneById(req, res) {
         const userId = req.query.id;
         if (userId) {

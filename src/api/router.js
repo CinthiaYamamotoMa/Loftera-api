@@ -43,6 +43,7 @@ router.post('/avaliacao', ratingController.store);
 router.post('/avaliable', imovelController.updateAvaliable);
 
 router.get('/imoveis', imovelController.findAll);
+router.get('/meusImoveis', imovelController.findAllByUserId);
 router.post('/imoveis', imovelController.store);
 router.get('/imovel', imovelController.findOneById);
 router.post('/deleteImovel', imovelController.delete);
