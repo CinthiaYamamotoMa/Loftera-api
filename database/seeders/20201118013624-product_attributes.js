@@ -8,6 +8,11 @@ module.exports = {
           attributeId: 1,
           productId: 1,
         },
+        {
+          attributeId: 2,
+          productId: 1,
+        },
+
       ]
     );
   },

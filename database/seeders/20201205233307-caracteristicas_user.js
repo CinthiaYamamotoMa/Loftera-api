@@ -13,12 +13,44 @@ module.exports = {
           userId: 1,
         },
         {
-          psychographicItemId: 1,
+          psychographicItemId: 3,
+          userId: 1,
+        },
+        {
+          psychographicItemId: 5,
+          userId: 1,
+        },
+        {
+          psychographicItemId: 4,
           userId: 2,
         },
         {
           psychographicItemId: 2,
           userId: 2,
+        },
+        {
+          psychographicItemId: 1,
+          userId: 3,
+        },
+        {
+          psychographicItemId: 2,
+          userId: 3,
+        },
+        {
+          psychographicItemId: 3,
+          userId: 3,
+        },
+        {
+          psychographicItemId: 1,
+          userId: 4,
+        },
+        {
+          psychographicItemId: 5,
+          userId: 4,
+        },
+        {
+          psychographicItemId: 5,
+          userId: 6,
         },
       ]
     );

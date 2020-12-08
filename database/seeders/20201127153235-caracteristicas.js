@@ -34,6 +34,18 @@ module.exports = {
           icon: 'fas fa-paw',
           deleted: false,
         },
+        {
+          name: 'Me importo com limpeza',
+          image: 'mania-de-limpeza.jpg',
+          icon: 'fas fa-hand-sparkles',
+          deleted: false,
+        },
+        {
+          name: 'Vegetariano(a)',
+          image: 'vegan.jpg',
+          icon: 'fas fa-seedling',
+          deleted: false,
+        },
       ]
     );
   },
