@@ -16,6 +16,19 @@ const { Op, Sequelize, sequelize } = require("sequelize");
 
 module.exports = {
 
+    async storeProductImage(imovel, filename) {
+        const productImage = await image.findOne({
+            where: {
+                productId: imovel
+            }
+        });
+        productImage.name = filename;
+        productImage.deleted = false;
+
+        await productImage.save();
+        return productImage;
+    },
+
     async findAll() {
         const imoveis = await address.findAll({
             where: {

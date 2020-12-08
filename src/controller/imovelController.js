@@ -7,6 +7,27 @@ const axios = require('axios').default;
 // all routes bellow have the prefix /user - keep that in mind when adding/editin routes.
 module.exports = {
 
+    async storeProductImage(req, res) {
+        const imovel = req.body.productId;
+        const file = req.body.filename
+        if (user) {
+            const productImage = await userService.storeProductImage(imovel, file);
+            const response = responseObj.success;
+            response.data = productImage;
+            res.json(response);
+        } else {
+            const response = responseObj.fail;
+            let message = "";
+            if (!user) {
+                message = "user object was not found on request body; ";
+            }
+            if(!file) {
+                message = "file object was not found on request body; ";
+            }
+            res.status(400).json(response);
+        }
+    },
+
     async storeEndereco(req, res){
             const receivedUser = req.body;
             if (receivedUser) {
