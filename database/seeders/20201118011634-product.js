@@ -10,20 +10,20 @@ module.exports = {
           iptu: 290.00,
           createdAt: new Date(),
           updatedAt: new Date(),
-          userId: 5
+          userId: 3
         },
         {
           aluguel: 1000.00,
           condo: 340.0,
           createdAt: new Date(),
           updatedAt: new Date(),
-          userId: 7
+          userId: 3
         },
         {
           aluguel: 400.00,
           createdAt: new Date(),
           updatedAt: new Date(),
-          userId: 7
+          userId: 3
         },
         {
           aluguel: 1200.00,
@@ -31,7 +31,7 @@ module.exports = {
           iptu: 260.00,
           createdAt: new Date(),
           updatedAt: new Date(),
-          userId: 5
+          userId: 3
         },
         {
           aluguel: 900.00,
@@ -39,14 +39,14 @@ module.exports = {
           iptu: 120.00,
           createdAt: new Date(),
           updatedAt: new Date(),
-          userId: 5
+          userId: 3
         },
         {
           aluguel: 1430.00,
           iptu: 150.0,
           createdAt: new Date(),
           updatedAt: new Date(),
-          userId: 5
+          userId: 3
         },
         {
           aluguel: 1000.00,
@@ -54,7 +54,7 @@ module.exports = {
           iptu: 260.00,
           createdAt: new Date(),
           updatedAt: new Date(),
-          userId: 5
+          userId: 3
         },
       ]
     );
