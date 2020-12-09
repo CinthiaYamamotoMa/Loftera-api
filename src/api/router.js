@@ -49,7 +49,7 @@ router.post('/deleteImovel', imovelController.delete);
 router.get('/imoveis/busca', imovelController.findPesquisa);
 router.post('/product', imovelController.storeProductImage);
 
-router.post('/attribute', attributesController.storeRuleProduct);
+router.post('/attribute', attributesController.storeAttributeProduct);
 
 router.post('/rule', rulesController.storeRuleProduct);
 

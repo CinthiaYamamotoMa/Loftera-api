@@ -16,6 +16,11 @@ const { Op, Sequelize, sequelize } = require("sequelize");
 
 module.exports = {
 
+    async findById(id) {
+        const userresponse = await product.findByPk(id);
+        return userresponse;
+    },
+
     async storeProductImage(imovel, filename) {
         const productImage = await image.findOne({
             where: {
@@ -101,12 +106,15 @@ module.exports = {
                             }]
                         },
                         { model: ratings, },
-                        { model: attributes, },
-                        { model: rules, },
+                        { model: attributes,
+                        as: 'comodidade' },
+                        { model: rules, 
+                        as: 'regra'},
                         {
                             model: comments,
                             include: [
                                 {
+                                    
                                     model: user,
                                     include: [
                                         { model: image }

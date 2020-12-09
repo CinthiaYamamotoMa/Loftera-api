@@ -10,8 +10,8 @@ module.exports = {
     async storeProductImage(req, res) {
         const imovel = req.body.productId;
         const file = req.body.filename
-        if (user) {
-            const productImage = await userService.storeProductImage(imovel, file);
+        if (imovel) {
+            const productImage = await imovelService.storeProductImage(imovel, file);
             const response = responseObj.success;
             response.data = productImage;
             res.json(response);
