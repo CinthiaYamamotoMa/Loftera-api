@@ -47,7 +47,16 @@ router.get('/meusImoveis', imovelController.findAllByUserId);
 router.post('/imoveis', imovelController.store);
 router.get('/imovel', imovelController.findOneById);
 router.post('/deleteImovel', imovelController.delete);
+
+router.get('/imoveis/busca', imovelController.findPesquisa);
+router.post('/product', imovelController.storeProductImage);
+
+router.post('/attribute', attributesController.storeAttributeProduct);
+
+router.post('/rule', rulesController.storeRuleProduct);
+
 router.get('/search', imovelController.findPesquisa);
+
 
 router.post('/endereco', imovelController.storeEndereco);
 

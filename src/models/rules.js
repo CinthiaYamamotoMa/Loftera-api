@@ -13,11 +13,11 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Rules.associate = (models) => {
-
         Rules.belongsToMany(models.product, {
             through: 'product_rules',
-            as: 'rules'
+            as: 'regra'
         })
+
 
     };
 

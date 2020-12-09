@@ -17,6 +17,22 @@ const { findAllByUserId } = require('../controller/imovelController');
 
 module.exports = {
 
+    async findById(id) {
+        const userresponse = await product.findByPk(id);
+        return userresponse;
+    },
+
+    async storeProductImage(imagem) {
+        // const productImage = await image.create();
+        // productImage.name = filename;
+        // productImage.deleted = false;
+        
+        const productImage = await image.create(imagem);
+
+        // await productImage.save();
+        return productImage;
+    },
+
     async findAll() {
         const imoveis = await address.findAll({
             where: {
@@ -139,6 +155,7 @@ module.exports = {
                             model: comments,
                             include: [
                                 {
+                                    
                                     model: user,
                                     include: [
                                         { model: image }

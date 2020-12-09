@@ -3,6 +3,7 @@ const ruleService = require('../services/ruleService');
 const userService = require('../services/userService');
 const responseObj = require('../config/response');
 const { Rules } = require('../models/');
+const imovelService = require('../services/imovelService');
 
 module.exports = {
 
@@ -14,15 +15,14 @@ module.exports = {
     },
 
     async storeRuleProduct(req, res) {
-        var regras = req.body["regras[]"]
-        var userId = req.body.userId
+        var regras = req.body.regras;
+        var productId = req.body.productId;
 
-        var user = await userService.findOneById(userId);
+        var imovel = await imovelService.findOneById(productId);
 
-        var i
         for (i = 0; i < regras.length; i++) {
-            // var regra = await ruleService.findById(caracteristicas[i])
-            // await user.addProduct_rules(regra)
+            var regra = await ruleService.findById(regras[i]);
+            await imovel.product.addRegra(regra);
         }
 
         const response = responseObj.success;
