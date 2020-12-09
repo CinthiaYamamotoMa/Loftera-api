@@ -1,7 +1,7 @@
 module.exports = {
   "development": {
     "username": "root",
-    "password": "cabecao01",
+    "password": "",
     "database": "loftera",
     "host": "127.0.0.1",
     "dialect": "mysql",
