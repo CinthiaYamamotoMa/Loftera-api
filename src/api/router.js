@@ -43,15 +43,17 @@ router.post('/avaliacao', ratingController.store);
 router.post('/avaliable', imovelController.updateAvaliable);
 
 router.get('/imoveis', imovelController.findAll);
+router.get('/meusImoveis', imovelController.findAllByUserId);
 router.post('/imoveis', imovelController.store);
 router.get('/imovel', imovelController.findOneById);
 router.post('/deleteImovel', imovelController.delete);
-router.get('/imoveis/busca', imovelController.findPesquisa);
+router.get('/search', imovelController.findPesquisa);
 
 router.post('/endereco', imovelController.storeEndereco);
 
 router.post('/comment', commentController.store);
 
 router.get('/facul', faculdadeController.findOneById);
+router.post('/facul', faculdadeController.store);
 
 module.exports = router;

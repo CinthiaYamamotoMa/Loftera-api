@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
 
         Rules.belongsToMany(models.product, {
             through: 'product_rules',
+            as: 'rules'
         })
 
     };

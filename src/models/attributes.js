@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     Attributes.associate = (models) => {
         Attributes.belongsToMany(models.product, {
             through: 'product_attributes',
+            as: 'comodidade'
         })
 
     };

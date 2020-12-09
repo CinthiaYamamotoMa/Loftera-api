@@ -1,6 +1,7 @@
 const { psychographicItem,
-        user,
-        image } = require('../models/');
+    user,
+    image,
+    faculdade } = require('../models/');
 
 module.exports = {
 
@@ -32,6 +33,9 @@ module.exports = {
                     model: psychographicItem,
                     as: "caracteristicas",
                 },
+                {
+                    model: faculdade,
+                }
             ]
         });
         // console.log(user.dataValues.caracteristicas[0].dataValues)
@@ -48,9 +52,16 @@ module.exports = {
                     model: user,
                     as: 'caracteristicas',
                     attributes: ['id', 'name', 'gender'],
-                    include: [{
-                        model: image
-                    }]
+                    include: [
+                        {
+                            model: image
+                        },
+                        {
+                            model: faculdade
+                        }],
+                    where: {
+                        role: 'estudante'
+                    }
                 },
             ]
         });
