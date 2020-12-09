@@ -53,6 +53,9 @@ module.exports = {
                         model: rules,
                         as: 'regra'
                     },
+                    {
+                        model: image,
+                    },
                 ]
             }]
         });
@@ -104,6 +107,9 @@ module.exports = {
                 include: [
                     {
                         model: ratings,
+                    },
+                    {
+                        model: image,
                     },
                     {
                         model: attributes,

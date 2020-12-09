@@ -56,6 +56,14 @@ module.exports = {
           updatedAt: new Date(),
           userId: 3
         },
+        {
+          aluguel: 1300.00,
+          condo: 500.7,
+          iptu: 168.00,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          userId: 3
+        },
       ]
     );
   },

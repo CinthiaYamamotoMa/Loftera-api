@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
 
     Faculdade.associate = (models) => {
 
-        Faculdade.belongsTo(models.product, {
+        Faculdade.belongsTo(models.user, {
             foreignKey: "userId"
         });
 

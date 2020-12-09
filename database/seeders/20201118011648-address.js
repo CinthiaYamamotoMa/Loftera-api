@@ -123,6 +123,23 @@ module.exports = {
           latitude: -23.637353709607826,
           longitude: -46.580808385405874
         },
+        {
+          cep: '09581620',
+          state: 'São Paulo',
+          city: 'São Caetano do Sul',
+          district: 'Jardim São Caetano',
+          street: 'Avenida Papa João XXIII',
+          number: 541,
+          complement: '',
+          avaliable: true,
+          deleted: false,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          addressTypeId: 1,
+          productId: 8,
+          latitude: -23.637353709607826,
+          longitude: -46.580808385405874
+        },
       ]
     );
   },

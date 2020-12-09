@@ -2,7 +2,6 @@ const router = require('express').Router();
 const attributeService = require('../services/attributeService');
 const imovelService = require('../services/imovelService');
 const responseObj = require('../config/response');
-const imovelService = require('../services/imovelService');
 
 module.exports = {
 
@@ -25,16 +24,16 @@ module.exports = {
             await imovel.product.addComodidade(comodidade)
         }
 
-    async storeRuleProduct(req, res) {
-        // var comodidades = req.body["comodidades[]"]
-        // var userId = req.body.userId
+    // async storeRuleProduct(req, res) {
+    //     // var comodidades = req.body["comodidades[]"]
+    //     // var userId = req.body.userId
 
-        var imovel = await imovelService.findOneById(1);
+    //     var imovel = await imovelService.findOneById(1);
         
-        // for (i = 0; i < comodidades.length; i++) {
-            var comodidade = await attributeService.findByPk(3)
-            await imovel.product.addComodidade(comodidade)
-        // }
+    //     // for (i = 0; i < comodidades.length; i++) {
+    //         var comodidade = await attributeService.findByPk(3)
+    //         await imovel.product.addComodidade(comodidade)
+    //     // }
 
 
         const response = responseObj.success;
