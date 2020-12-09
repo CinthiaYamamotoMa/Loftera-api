@@ -12,25 +12,46 @@ module.exports = {
           userId: 1
         },
         {
-          name: 'avatar-s-25.jpg',
+          name: 'avatar-s-21.jpg',
           deleted: false,
           createdAt: new Date(),
           updatedAt: new Date(),
           userId: 2
         },
         {
-          name: 'avatar-s-24.jpg',
+          name: 'avatar-s-5.jpg',
           deleted: false,
           createdAt: new Date(),
           updatedAt: new Date(),
           userId: 3
         },
         {
-          name: 'avatar-s-23.jpg',
+          name: 'avatar-s-20.jpg',
           deleted: false,
           createdAt: new Date(),
           updatedAt: new Date(),
           userId: 4
+        },
+        {
+          name: 'avatar-s-24.jpg',
+          deleted: false,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          userId: 5
+        },
+        {
+          name: 'avatar-s-13.jpg',
+          deleted: false,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          userId: 6
+        },
+        {
+          name: 'avatar-s-14.jpg',
+          deleted: false,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          userId: 7
         },
       ]
     );

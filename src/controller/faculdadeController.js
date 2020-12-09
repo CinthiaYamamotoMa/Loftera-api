@@ -27,8 +27,9 @@ module.exports = {
     },
     async store(req, res) {
         const receivedUser = req.body;
+        
         if (receivedUser) {
-            const createdUser = await imovelService.storeUser(receivedUser);
+            const createdUser = await faculdadeService.store(receivedUser);
             const response = responseObj.success;
             response.data = createdUser;
             res.json(response);

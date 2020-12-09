@@ -50,6 +50,15 @@ module.exports = {
         response.data = imoveis;
         res.json(response);
     },
+
+    async findAllByUserId(req, res) {
+        const userId = req.query.userId;
+        const imoveis = await imovelService.findAllByUserId(userId);
+        const response = responseObj.success;
+        response.data = imoveis.products;
+        res.json(response);
+    },
+
     async findOneById(req, res) {
         const userId = req.query.id;
         if (userId) {
@@ -143,6 +152,7 @@ module.exports = {
         }
     },
     async findPesquisa(req, res) {
+        console.log(req)
         var pesquisa = req.body
         var imoveisEncontrados = []
 
@@ -200,6 +210,8 @@ module.exports = {
                 }
             }
         }
+
+        console.log(imoveis)
 
         const response = responseObj.success;
 

@@ -13,6 +13,7 @@ const
 const axios = require('axios').default;
 
 const { Op, Sequelize, sequelize } = require("sequelize");
+const { findAllByUserId } = require('../controller/imovelController');
 
 module.exports = {
 
@@ -46,9 +47,42 @@ module.exports = {
                     },
                     {
                         model: attributes,
+                        as: 'comodidade'
+                    },
+                    {
+                        model: rules,
+                        as: 'regra'
                     },
                 ]
             }]
+        });
+        return imoveis;
+    },
+
+    async findAllByUserId(id) {
+        const imoveis = await user.findOne({
+            where: {
+                deleted: false,
+                id: id
+            },
+            include: [
+                {
+                    model: product,
+                    include: [
+                        {
+                            model: ratings,
+                        },
+                        {
+                            model: attributes,
+                            as: 'comodidade'
+                        },
+                        {
+                            model: rules,
+                            as: 'regra'
+                        },
+                    ]
+                },
+            ]
         });
         return imoveis;
     },
@@ -62,7 +96,7 @@ module.exports = {
                 [Op.or]: [
                     { street: pesquisa.local },
                     { district: pesquisa.local },
-                    { street: pesquisa.local },
+                    { city: pesquisa.local },
                 ]
             },
             include: [{
@@ -73,6 +107,11 @@ module.exports = {
                     },
                     {
                         model: attributes,
+                        as: 'comodidade'
+                    },
+                    {
+                        model: rules,
+                        as: 'regra'
                     },
                 ]
             }]
@@ -104,10 +143,14 @@ module.exports = {
                             }]
                         },
                         { model: ratings, },
-                        { model: attributes,
-                        as: 'comodidade' },
-                        { model: rules, 
-                        as: 'regra'},
+                        {
+                            model: attributes,
+                            as: 'comodidade'
+                        },
+                        {
+                            model: rules,
+                            as: 'regra'
+                        },
                         {
                             model: comments,
                             include: [
@@ -153,7 +196,7 @@ module.exports = {
         await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${enderecoNovo.cep}&key=AIzaSyAajnzIlUy_7lAOHZe9PyC3RFX80lqC2fE`)
             .then(response => {
                 console.log(response),
-                resposta = response.data.results[0].geometry.location;
+                    resposta = response.data.results[0].geometry.location;
             });
         console.log(enderecoNovo);
         enderecoNovo.createdAt = new Date();

@@ -74,43 +74,23 @@ module.exports = {
         },
         {
           name: 'Guarda-Roupa',
-          icon: 'fas fa-blender',
-        },
-        {
-          name: 'Armário',
-          icon: 'fas fa-blender',
+          icon: 'fas fa-tshirt',
         },
         {
           name: 'Varanda',
-          icon: 'fas fa-blender',
+          icon: 'fas fa-wind',
         },
         {
           name: 'Elevador',
-          icon: 'fas fa-blender',
+          icon: 'fas fa-sort-up',
         },
         {
           name: 'Cama',
-          icon: 'fas fa-blender',
+          icon: 'fas fa-bed',
         },
         {
           name: 'Máquina de Lavar',
-          icon: 'fas fa-blender',
-        },
-        {
-          name: 'Cabides',
-          icon: 'fas fa-blender',
-        },
-        {
-          name: 'Microondas',
-          icon: 'fas fa-blender',
-        },
-        {
-          name: 'Fogão',
-          icon: 'fas fa-blender',
-        },
-        {
-          name: 'Ferro de Passar',
-          icon: 'fas fa-blender',
+          icon: 'fas fa-soap',
         },
       ]
     );

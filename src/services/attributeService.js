@@ -1,4 +1,4 @@
-const { attributes } = require('../models/');
+const { attributes, product } = require('../models/');
 
 module.exports = {
 
@@ -20,4 +20,17 @@ module.exports = {
         return createdUser;
     },
 
+    async findByPk(id) {
+        const comodidades = await attributes.findOne({
+            where: {
+                id: id
+            },
+            include: [{
+                model: product,
+                as: 'comodidade'
+            }]
+        });
+        // console.log(comodidades)
+        return comodidades;
+    },
 }
