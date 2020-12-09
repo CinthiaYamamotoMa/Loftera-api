@@ -80,7 +80,7 @@ module.exports = {
                 [Op.or]: [
                     { street: pesquisa.local },
                     { district: pesquisa.local },
-                    { street: pesquisa.local },
+                    { city: pesquisa.local },
                 ]
             },
             include: [{

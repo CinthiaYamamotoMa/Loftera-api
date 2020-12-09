@@ -54,5 +54,6 @@ router.post('/endereco', imovelController.storeEndereco);
 router.post('/comment', commentController.store);
 
 router.get('/facul', faculdadeController.findOneById);
+router.post('/facul', faculdadeController.store);
 
 module.exports = router;
