@@ -8,38 +8,39 @@ const axios = require('axios').default;
 module.exports = {
 
     async storeProductImage(req, res) {
-        const imovel = req.body.productId;
-        const file = req.body.filename
-        if (imovel) {
-            const productImage = await imovelService.storeProductImage(imovel, file);
+        const imovelId = req.body.productId;
+        const files = req.body.filename
+        var image = {
+            productId: imovelId,
+            name: '',
+            createdAt: new Date(),
+            updatedAt: new Date()
+        }
+        var imagens
+        for (i = 0; i < files.length; i++) {
+            image.name = files[i].originalname
+            imagens = await imovelService.storeProductImage(image);
+        }
+
+        console.log(imagens)
+        const response = responseObj.success;
+        response.data = imagens;
+        res.json(response);
+        
+    },
+
+    async storeEndereco(req, res) {
+        const receivedUser = req.body;
+        if (receivedUser) {
+            const createdUser = await imovelService.storeAddress(receivedUser);
             const response = responseObj.success;
-            response.data = productImage;
+            response.data = createdUser;
             res.json(response);
         } else {
             const response = responseObj.fail;
-            let message = "";
-            if (!user) {
-                message = "user object was not found on request body; ";
-            }
-            if(!file) {
-                message = "file object was not found on request body; ";
-            }
+            response.message = "user object was not found on request body";
             res.status(400).json(response);
         }
-    },
-
-    async storeEndereco(req, res){
-            const receivedUser = req.body;
-            if (receivedUser) {
-                const createdUser = await imovelService.storeAddress(receivedUser);
-                const response = responseObj.success;
-                response.data = createdUser;
-                res.json(response);
-            } else {
-                const response = responseObj.fail;
-                response.message = "user object was not found on request body";
-                res.status(400).json(response);
-            }
 
     },
 
@@ -207,7 +208,7 @@ module.exports = {
         } else {
             response.data = imoveisEncontrados;
         }
-      
+
         res.json(response);
     },
 }

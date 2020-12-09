@@ -21,16 +21,14 @@ module.exports = {
         return userresponse;
     },
 
-    async storeProductImage(imovel, filename) {
-        const productImage = await image.findOne({
-            where: {
-                productId: imovel
-            }
-        });
-        productImage.name = filename;
-        productImage.deleted = false;
+    async storeProductImage(imagem) {
+        // const productImage = await image.create();
+        // productImage.name = filename;
+        // productImage.deleted = false;
+        
+        const productImage = await image.create(imagem);
 
-        await productImage.save();
+        // await productImage.save();
         return productImage;
     },
 
