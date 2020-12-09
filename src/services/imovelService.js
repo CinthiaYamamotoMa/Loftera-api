@@ -31,6 +31,11 @@ module.exports = {
                     },
                     {
                         model: attributes,
+                        as: 'comodidade'
+                    },
+                    {
+                        model: rules,
+                        as: 'regra'
                     },
                 ]
             }]
@@ -53,6 +58,11 @@ module.exports = {
                         },
                         {
                             model: attributes,
+                            as: 'comodidade'
+                        },
+                        {
+                            model: rules,
+                            as: 'regra'
                         },
                     ]
                 },
@@ -81,6 +91,11 @@ module.exports = {
                     },
                     {
                         model: attributes,
+                        as: 'comodidade'
+                    },
+                    {
+                        model: rules,
+                        as: 'regra'
                     },
                 ]
             }]
@@ -112,8 +127,14 @@ module.exports = {
                             }]
                         },
                         { model: ratings, },
-                        { model: attributes, },
-                        { model: rules, },
+                        {
+                            model: attributes,
+                            as: 'comodidade'
+                        },
+                        {
+                            model: rules,
+                            as: 'regra'
+                        },
                         {
                             model: comments,
                             include: [
@@ -158,7 +179,7 @@ module.exports = {
         await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${enderecoNovo.cep}&key=AIzaSyAajnzIlUy_7lAOHZe9PyC3RFX80lqC2fE`)
             .then(response => {
                 console.log(response),
-                resposta = response.data.results[0].geometry.location;
+                    resposta = response.data.results[0].geometry.location;
             });
         console.log(enderecoNovo);
         enderecoNovo.createdAt = new Date();

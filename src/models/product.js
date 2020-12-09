@@ -28,10 +28,12 @@ module.exports = (sequelize, DataTypes) => {
 
         Product.belongsToMany(models.attributes, {
             through: 'product_attributes',
+            as: 'comodidade'
         })
 
         Product.belongsToMany(models.rules, {
             through: 'product_rules',
+            as: 'regra'
         })
 
         Product.belongsToMany(models.user, {

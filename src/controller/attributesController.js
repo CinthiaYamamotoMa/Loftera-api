@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const attributeService = require('../services/attributeService');
+const imovelService = require('../services/imovelService');
 const responseObj = require('../config/response');
 
 module.exports = {
@@ -12,16 +13,15 @@ module.exports = {
     },
 
     async storeRuleProduct(req, res) {
-        var comodidades = req.body["comodidades[]"]
-        var userId = req.body.userId
+        // var comodidades = req.body["comodidades[]"]
+        // var userId = req.body.userId
 
-        var user = await userService.findOneById(userId);
-
-        var i
-        for (i = 0; i < comodidades.length; i++) {
-            // var regra = await attributeService.findById(caracteristicas[i])
-            // await user.addProduct_attributes(regra)
-        }
+        var imovel = await imovelService.findOneById(1);
+        
+        // for (i = 0; i < comodidades.length; i++) {
+            var comodidade = await attributeService.findByPk(3)
+            await imovel.product.addComodidade(comodidade)
+        // }
 
         const response = responseObj.success;
         res.status(200).json(response);

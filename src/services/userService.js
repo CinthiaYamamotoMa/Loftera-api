@@ -3,7 +3,8 @@ const { user,
     ratings,
     attributes,
     image,
-    faculdade } = require('../models/');
+    faculdade, 
+    rules } = require('../models/');
 
 module.exports = {
 
@@ -58,6 +59,11 @@ module.exports = {
                         },
                         {
                             model: attributes,
+                            as: 'comodidade'
+                        },
+                        {
+                            model: rules,
+                            as: 'regra'
                         },
                     ]
                 },
