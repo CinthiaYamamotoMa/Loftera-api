@@ -38,7 +38,7 @@ module.exports = {
           district: 'Santo Antônio',
           street: 'Travessa Acácia',
           number: 85,
-          userId: 8,
+          userId: 15,
           deleted: false,
           latitude: -23.61851338246393,
           longitude: -46.57794095830096
@@ -51,7 +51,20 @@ module.exports = {
           district: 'Centro',
           street: 'Travessa Afonso Meira',
           number: 85,
-          userId: 8,
+          userId: 14,
+          deleted: false,
+          latitude: -23.61851338246393,
+          longitude: -46.57794095830096
+        },
+        {
+          name: 'Uninove',
+          cep: '09521000',
+          state: 'São Paulo',
+          city: 'São Caetano do Sul',
+          district: 'Centro',
+          street: 'Travessa Afonso Meira',
+          number: 85,
+          userId: 6,
           deleted: false,
           latitude: -23.61851338246393,
           longitude: -46.57794095830096
@@ -116,7 +129,7 @@ module.exports = {
           district: 'Santa Maria',
           street: 'Rua Silvia',
           number: 88,
-          userId: 14,
+          userId: 2,
           deleted: false,
           latitude: -23.63399042538996, 
           longitude: -46.551007019040384
@@ -129,7 +142,7 @@ module.exports = {
           district: 'Jardim São Caetano',
           street: 'Avenida Papa João XXIII',
           number: 541,
-          userId: 15,
+          userId: 1,
           deleted: false,
           latitude: -23.637353709607826,
           longitude: -46.580808385405874
