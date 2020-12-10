@@ -3,6 +3,7 @@ const psychographicService = require('../services/psychographicService');
 const userService = require('../services/userService');
 const responseObj = require('../config/response');
 const { psychographicItem } = require('../models/');
+const axios = require('axios')
 
 // all routes bellow have the prefix /user - keep that in mind when adding/editin routes.
 module.exports = {
@@ -84,8 +85,8 @@ module.exports = {
                                 if (caracteristicasId_User[cont] == 1) {
                                     if (caracteristicas[i].dataValues.caracteristicas[j].dataValues.gender == 'F') {
                                         if (usersSemelhantesId.indexOf(caracteristicas[i].dataValues.caracteristicas[j].dataValues.id) == -1) {
-                                            if (caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade != null) {
-                                                await axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade.latitude},${caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade.longitude}&destinations=${userFound.faculdade.latitude},${userFound.faculdades.longitude}&key=AIzaSyAajnzIlUy_7lAOHZe9PyC3RFX80lqC2fE`)
+                                            if (caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade != null || caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade != undefined) {
+                                                await axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade.latitude},${caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade.longitude}&destinations=${userFound.faculdade.latitude},${userFound.faculdade.longitude}&key=AIzaSyAajnzIlUy_7lAOHZe9PyC3RFX80lqC2fE`)
                                                     .then(response => {
                                                         if (10 >= parseInt(response.data.rows[0].elements[0].distance.value)) {
                                                             usersSemelhantesId.push(caracteristicas[i].dataValues.caracteristicas[j].dataValues.id)
@@ -100,7 +101,7 @@ module.exports = {
                                     if (caracteristicas[i].dataValues.caracteristicas[j].dataValues.gender == 'M') {
                                         if (usersSemelhantesId.indexOf(caracteristicas[i].dataValues.caracteristicas[j].dataValues.id) == -1) {
                                             if (caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade != null) {
-                                                await axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade.latitude},${caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade.longitude}&destinations=${userFound.faculdade.latitude},${userFound.faculdades.longitude}&key=AIzaSyAajnzIlUy_7lAOHZe9PyC3RFX80lqC2fE`)
+                                                await axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade.latitude},${caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade.longitude}&destinations=${userFound.faculdade.latitude},${userFound.faculdade.longitude}&key=AIzaSyAajnzIlUy_7lAOHZe9PyC3RFX80lqC2fE`)
                                                     .then(response => {
                                                         if (10 >= parseInt(response.data.rows[0].elements[0].distance.value)) {
                                                             usersSemelhantesId.push(caracteristicas[i].dataValues.caracteristicas[j].dataValues.id)
@@ -115,7 +116,7 @@ module.exports = {
                                     if (caracteristicas[i].dataValues.caracteristicas[j].dataValues.gender == 'O') {
                                         if (usersSemelhantesId.indexOf(caracteristicas[i].dataValues.caracteristicas[j].dataValues.id) == -1) {
                                             if (caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade != null) {
-                                                await axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade.latitude},${caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade.longitude}&destinations=${userFound.faculdade.latitude},${userFound.faculdades.longitude}&key=AIzaSyAajnzIlUy_7lAOHZe9PyC3RFX80lqC2fE`)
+                                                await axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade.latitude},${caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade.longitude}&destinations=${userFound.faculdade.latitude},${userFound.faculdade.longitude}&key=AIzaSyAajnzIlUy_7lAOHZe9PyC3RFX80lqC2fE`)
                                                     .then(response => {
                                                         if (10 >= parseInt(response.data.rows[0].elements[0].distance.value)) {
                                                             usersSemelhantesId.push(caracteristicas[i].dataValues.caracteristicas[j].dataValues.id)
@@ -130,7 +131,7 @@ module.exports = {
                                     if (caracteristicas[i].dataValues.caracteristicas[j].dataValues.caracteristicas_user.psychographicItemId == caracteristicasId_User[cont]) {
                                         if (usersSemelhantesId.indexOf(caracteristicas[i].dataValues.caracteristicas[j].dataValues.id) == -1) {
                                             if (caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade != null) {
-                                                await axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade.latitude},${caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade.longitude}&destinations=${userFound.faculdade.latitude},${userFound.faculdades.longitude}&key=AIzaSyAajnzIlUy_7lAOHZe9PyC3RFX80lqC2fE`)
+                                                await axios.get(`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade.latitude},${caracteristicas[i].dataValues.caracteristicas[j].dataValues.faculdade.longitude}&destinations=${userFound.faculdade.latitude},${userFound.faculdade.longitude}&key=AIzaSyAajnzIlUy_7lAOHZe9PyC3RFX80lqC2fE`)
                                                     .then(response => {
                                                         if (10 >= parseInt(response.data.rows[0].elements[0].distance.value)) {
                                                             usersSemelhantesId.push(caracteristicas[i].dataValues.caracteristicas[j].dataValues.id)

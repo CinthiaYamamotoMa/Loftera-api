@@ -45,6 +45,8 @@ module.exports = (sequelize, DataTypes) => {
 
         Product.hasMany(models.comments);
 
+        Product.hasMany(models.image);
+
         Product.hasOne(models.ratings);
 
     };

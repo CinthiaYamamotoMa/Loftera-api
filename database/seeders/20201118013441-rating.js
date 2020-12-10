@@ -74,6 +74,16 @@ module.exports = {
           qtdAvaliacoes: 50,
           productId: 7,
         },
+        {
+          limpeza: 230.00,
+          comunicacao: 241.00,
+          checkin: 225.00,
+          precisao: 238.50,
+          localizacao: 219.50,
+          valor: 237.50,
+          qtdAvaliacoes: 50,
+          productId: 8,
+        },
       ]
     );
   },

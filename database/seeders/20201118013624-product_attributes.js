@@ -12,7 +12,18 @@ module.exports = {
           attributeId: 2,
           productId: 1,
         },
-
+        {
+          attributeId: 3,
+          productId: 1,
+        },
+        {
+          attributeId: 4,
+          productId: 1,
+        },
+        {
+          attributeId: 7,
+          productId: 1,
+        },
       ]
     );
   },

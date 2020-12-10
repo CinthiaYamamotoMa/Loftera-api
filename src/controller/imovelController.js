@@ -152,7 +152,6 @@ module.exports = {
         }
     },
     async findPesquisa(req, res) {
-        console.log(req)
         var pesquisa = req.body
         var imoveisEncontrados = []
 
@@ -210,8 +209,6 @@ module.exports = {
                 }
             }
         }
-
-        console.log(imoveis)
 
         const response = responseObj.success;
 

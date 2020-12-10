@@ -76,6 +76,9 @@ module.exports = {
                             model: ratings,
                         },
                         {
+                            model: image,
+                        },
+                        {
                             model: attributes,
                             as: 'comodidade'
                         },

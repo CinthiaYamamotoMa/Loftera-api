@@ -21,6 +21,10 @@ module.exports = {
           userId: 1,
         },
         {
+          psychographicItemId: 6,
+          userId: 1,
+        },
+        {
           psychographicItemId: 4,
           userId: 2,
         },
@@ -30,27 +34,51 @@ module.exports = {
         },
         {
           psychographicItemId: 1,
-          userId: 3,
+          userId: 6,
         },
         {
           psychographicItemId: 2,
-          userId: 3,
+          userId: 6,
         },
         {
           psychographicItemId: 3,
-          userId: 3,
-        },
-        {
-          psychographicItemId: 1,
-          userId: 4,
-        },
-        {
-          psychographicItemId: 5,
-          userId: 4,
+          userId: 6,
         },
         {
           psychographicItemId: 5,
           userId: 6,
+        },
+        {
+          psychographicItemId: 1,
+          userId: 7,
+        },
+        {
+          psychographicItemId: 5,
+          userId: 7,
+        },
+        {
+          psychographicItemId: 7,
+          userId: 7,
+        },
+        {
+          psychographicItemId: 7,
+          userId: 8,
+        },
+        {
+          psychographicItemId: 7,
+          userId: 11,
+        },
+        {
+          psychographicItemId: 7,
+          userId: 9,
+        },
+        {
+          psychographicItemId: 6,
+          userId: 12,
+        },
+        {
+          psychographicItemId: 6,
+          userId: 9,
         },
       ]
     );
