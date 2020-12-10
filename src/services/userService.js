@@ -193,7 +193,8 @@ module.exports = {
                 userId: usuario
             }
         });
-        avatar.deleted = true;
+        avatar.name = 'default.png';
+        avatar.deleted = false;
 
         await avatar.save();
         return avatar;
